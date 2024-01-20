@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       {/* add navbar */}
-      <div className="flex flex-row">
+      <div className="flex flex-row ">
         <Navbar />
         <Outlet />
       </div>

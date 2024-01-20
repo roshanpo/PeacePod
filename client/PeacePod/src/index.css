@@ -25,7 +25,7 @@
     rgba(47,84,146, 1),
     rgb(165, 220, 238)
   );
-  /* background: url("../public/images/home-bg.jpg") center no-repeat ; */
+  
   background-size: cover;
   /* filter: blur(5px);
   -webkit-filter: blur(5px); */
@@ -62,4 +62,15 @@
 
 .roboto{
   font-family: sans-serif;
+}
+
+.signup-background{
+  background: url("/images/home-bg.jpg") center no-repeat ;
+  position: relative;
+  background-size: cover;
+  height: 100vh;	
+  width: 100%;
+  border: 2px transparent;
+  /* filter: blur(5px);
+  -webkit-filter: blur(5px); */
 }
