@@ -1,14 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// lets make this layout for our outet and so on..
+// what should i add here
+// navigation
+// footer
+// outlet
+//
+
+import "./App.css"
+import { Outlet } from "react-router-dom"
+import { Navbar } from "./components/Navigation/Navbar"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      
+      {/* add navbar */}
+      <div className="flex flex-row">
+        <Navbar />
+        <Outlet />
+      </div>
+
+      {/* add footer */}
     </>
   )
 }
