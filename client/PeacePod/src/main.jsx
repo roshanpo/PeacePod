@@ -11,6 +11,9 @@ import { RelaxAndBreathe } from './Pages/RelaxAndBreathe/RelaxAndBreathe.jsx'
 import { TalkToHope } from './Pages/TalkToHope/TalkToHope.jsx'
 import { SignUp } from './components/Forms/SignUp.jsx'
 import { SignIn } from './components/Forms/SignIn.jsx'
+import { UserNavbar } from './components/Navigation/UserNavbar.jsx'
+import { DeepBreathing } from './components/CommonComponents/BreathingComponents/DeepBreathing.jsx'
+import { Four78Technique } from './components/CommonComponents/BreathingComponents/Four78Technique.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,10 +21,21 @@ const router = createBrowserRouter(
       <Route path='' element={<Home />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/signin' element={<SignIn/>} />
+      {/* navbars */}
+      <Route path='/usernavbar' element={<UserNavbar/>} />
+
+      
       <Route path='/aboutus' element={<AboutUs />} />
       <Route path='/music' element={<Music />} />
       <Route path='/scene' element={<Scene/>} />
       <Route path='/relaxandbreathe' element={<RelaxAndBreathe/>} />
+      
+        <Route path='/relaxandbreathe/deepbreathing' element={<DeepBreathing/>} />
+        <Route path='/relaxandbreathe/4-7-8technique' element={<Four78Technique/>} />
+        
+
+      
+
       <Route path='/talktohope' element={<TalkToHope/>} />
       
     </Route>

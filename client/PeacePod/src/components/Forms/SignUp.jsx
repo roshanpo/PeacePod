@@ -5,9 +5,11 @@ import { useEffect, useState } from "react"
 import { Snackbar } from "@mui/material"
 import IconButton from "@mui/material/IconButton"
 import { X } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export const SignUp = () => {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate();
   const form = useForm({
     defaultValues: {
       username: "Jane Doe",
@@ -23,12 +25,13 @@ export const SignUp = () => {
   const onSubmit = (data) => {
     // send the data to backend calling api
     // use axios and react query
-    console.log(data)
+    navigate('/')
+    
   }
 
   useEffect(() => {
     if (isSubmitting) {
-      ;<h1>Submitting...</h1>
+      <h1>Submitting...</h1>
     }
   })
 
@@ -56,7 +59,7 @@ export const SignUp = () => {
       color="inherit"
       onClick={handleClose}
     >
-      <div className="rounded-full bg-red-500 px-1 py-1">
+      <div className="rounded-full text-white px-1 py-1">
         <X />
       </div>
     </IconButton>
