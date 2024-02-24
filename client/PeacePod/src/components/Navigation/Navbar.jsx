@@ -16,7 +16,7 @@ export function Navbar() {
   return (
     <>
       {/* for desktop */}
-      <aside className="hidden md:flex h-screen w-72 flex-col overflow-y-auto border-r-transparent bg-gradient-to-br to-[#386991] from-[#2C2E44] from-50% to-90% px-5 py-8 shadow-2xl roboto min-h-screen">
+      <aside className="absolute z-50 hidden md:flex h-screen w-72 flex-col overflow-y-auto border-r-transparent bg-gradient-to-br to-[#386991] from-[#2C2E44] from-50% to-90% px-5 py-8 shadow-2xl roboto min-h-screen">
         {/* div that shows logo */}
         <div className="text-3xl font-bold text-white px-4 py-4">
           <NavLink to="/">

@@ -14,6 +14,7 @@ import { SignIn } from './components/Forms/SignIn.jsx'
 import { UserNavbar } from './components/Navigation/UserNavbar.jsx'
 import { DeepBreathing } from './components/CommonComponents/BreathingComponents/DeepBreathing.jsx'
 import { Four78Technique } from './components/CommonComponents/BreathingComponents/Four78Technique.jsx'
+import AllMusic from './Pages/Music/AllMusic.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,7 +27,10 @@ const router = createBrowserRouter(
 
       
       <Route path='/aboutus' element={<AboutUs />} />
-      <Route path='/music' element={<Music />} />
+      <Route path='/music' element={<Music />} >
+        <Route path='' element={<AllMusic />} />
+      </Route>
+
       <Route path='/scene' element={<Scene/>} />
       <Route path='/relaxandbreathe' element={<RelaxAndBreathe/>} />
       
