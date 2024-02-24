@@ -57,7 +57,7 @@ export const SignIn = () => {
       color="inherit"
       onClick={handleClose}
     >
-      <div className="rounded-full bg-red-500 px-1 py-1">
+      <div className="rounded-full text-white px-1 py-1">
       <X/>
       </div>
     </IconButton>
