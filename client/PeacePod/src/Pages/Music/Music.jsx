@@ -21,8 +21,9 @@ export const Music = () => {
   const [selectedGenre, setSelectedGenre] = useState('Music')
   return (
     <>
-    <div className="music-background blur-sm z-10"></div>
-      <div className="md:pl-64 absolute z-20 w-full min-h-screen overflow-y-scroll  border-r-2 border-red-400">
+    {/* <div className="w-full min-h-screen overflow-y-scroll music-background blur-sm"></div> */}
+    <div className="absolute w-full min-h-screen overflow-y-scroll music-background border-r-2">
+      <div className=" relative z-20 ">
         <div className="flex flex-col mt-8 pl-8">
           <div className="justify-between mx-auto flex">
             <div className="px-4 py-2">
@@ -31,11 +32,11 @@ export const Music = () => {
               </h3>
             </div>
             {/* div for adding music and popover */}
-            <div className="flex w-48 flex-col justify-between">
+            <div className="flex w-52 flex-col justify-between">
               <div className="mx-auto mt-2">
                 <button
                   onClick={toggleDropdown}
-                  className="relative text-left z-10 block rounded-md w-48  bg-slate-600 text-gray-200 px-6 text-lg py-2 overflow-hidden "
+                  className="relative text-left z-10 block rounded-md w-52  bg-slate-600 text-gray-200 px-6 text-lg py-2 overflow-hidden "
                 >
                   {selectedGenre}
                   {/* <svg
@@ -54,9 +55,9 @@ export const Music = () => {
                 </button>
               </div>
               {dropdownOpen && (
-                <div className="flex flex-col py-2 w-48 bg-blue-300 roundeed-md">
+                <div className="flex absolute z-30 top-[40px] flex-col w-52 bg-blue-300 roundeed-md">
                   {music_genre.map((music) => {
-                  if (!music) {
+                    if (!music) {
                       return null
                     }
                     return (
@@ -64,7 +65,7 @@ export const Music = () => {
                         toggleDropdown()
                         setSelectedGenre(music)
                       }}>
-                        <div className="block px-4 py-2 text-lg capitalize text-gray-800 hover:bg-indigo-500 hover:text-white">
+                        <div className="block rounded-md px-4 py-2 text-lg capitalize text-gray-800 hover:bg-indigo-500 hover:text-white">
                           {music}
                         </div>
                       </Link>
@@ -78,12 +79,12 @@ export const Music = () => {
         </div>
       </div>
 
-      <div className="md:pl-[220px] z-10 pt-24 absolute w-full mt-6">
-            <div className="grid grid-flow-col">
-              <Outlet/>
-            </div>
-          </div>
-      
+      <div className=" z-10 relative w-full mt-6">
+        <div className="pl-4 grid grid-flow-col pr-4">
+          <Outlet/>
+        </div>
+      </div>
+      </div>
     </>
   )
 }
