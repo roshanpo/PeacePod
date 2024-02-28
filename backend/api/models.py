@@ -13,9 +13,9 @@ class Video(models.Model):
     
 class Music(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=300)
     category = models.CharField(max_length=100)
-    music_file = models.FileField(upload_to='music/')
+    music_file = models.FileField(upload_to='music/All')
 
     def __str__(self):
         return self.title
