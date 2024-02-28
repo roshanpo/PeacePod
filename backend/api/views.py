@@ -40,6 +40,7 @@ def get_video(request, video_name):
 
 @api_view(['GET'])
 def get_music(request, music_name):
+    print(music_name)
     music = get_object_or_404(Music, title=music_name)
     music_path = music.music_file.path
     return FileResponse(open(music_path, 'rb'), content_type='audio/mp3')
@@ -48,7 +49,9 @@ def get_music(request, music_name):
 def allmusic(request):
     music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/all')  # Path to your music folder
     music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
-    return Response({'allmusic': music_files})
+
+    music_titles = [os.path.splitext(file)[0] for file in music_files]
+    return Response({'allmusic': music_titles})
 
 @api_view(['GET'])
 def category(request, category_name):
