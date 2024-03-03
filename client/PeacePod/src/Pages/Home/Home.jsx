@@ -1,9 +1,7 @@
 // add images and background and
-
 import { Button } from "../../components/CommonComponents/Button"
 import { ArrowRight } from "lucide-react"
 import { NavLink } from "react-router-dom"
-
 export const Home = () => {
   return (
     <>
@@ -13,6 +11,7 @@ export const Home = () => {
             <div className="leading-snug enriqueta-bold text-6xl shadow-sm text-white">
               <h1>Welcome to</h1>
               <h1 className="tracking-[6px]">PEACEPOD</h1>
+              
             </div>
             <div className="flex mt-20">
               <div className="lg:w-[80%] ">
@@ -65,8 +64,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-
-
     </>
   )
 }
