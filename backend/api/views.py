@@ -70,7 +70,7 @@ def chat(request):
             #print(request)
             logger.debug("This is a test debug message")
             logger.debug(f"Request payload: {request.data}")
-            message = request.data.get('content', '')
+            message = request.data.get('Content', '')
             result = get_response(message)
 
             # Return a response with a success message

@@ -1,12 +1,16 @@
 import { useForm } from "react-hook-form"
 import { NavLink } from "react-router-dom"
 import { DevTool } from "@hookform/devtools"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+// import AuthContext from "@/context/AuthProvider"
 import { Snackbar } from "@mui/material"
 import IconButton from '@mui/material/IconButton';
 import { X } from 'lucide-react';
+// import axios from "../../api/axios"
+// const LOGIN_URL = "/auth";
 
 export const SignIn = () => {
+  // const {setAuth}= useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const form = useForm({
     defaultValues: {
@@ -20,11 +24,14 @@ export const SignIn = () => {
   const { register, watch, formState, control, handleSubmit, reset } = form
   const { errors, isDirty, isSubmitting, isSubmitSuccessful } = formState
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     // fetch data from backend
     // use axios and react query
     // if user found then show data
     console.log(data)
+    // try{
+    //   const response = await axios.post(LOGIN_URL, dara)
+    // }
   }
 
   useEffect(() => {
@@ -48,7 +55,7 @@ export const SignIn = () => {
     }
 
     setOpen(false);
-  };
+  }; 
 
   const action = (
     <IconButton

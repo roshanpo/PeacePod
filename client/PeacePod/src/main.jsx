@@ -16,6 +16,7 @@ import { DeepBreathing } from './components/CommonComponents/BreathingComponents
 import { Four78Technique } from './components/CommonComponents/BreathingComponents/Four78Technique.jsx'
 import AllMusic from './Pages/Music/AllMusic.jsx'
 import PlayMusic from './components/sound/PLayMusic.jsx'
+import { AuthProvider } from './context/AuthProvider.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,6 +54,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-<RouterProvider router={router}/>
+    <AuthProvider>
+      <RouterProvider router={router}/> 
+    </AuthProvider>
   </React.StrictMode>,
 )

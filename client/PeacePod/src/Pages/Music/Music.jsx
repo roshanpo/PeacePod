@@ -5,14 +5,11 @@ import { Outlet } from "react-router-dom"
 export const Music = () => {
   const music_genre = [
     "All",
-    "Ambient",
-    "Classical",
-    "Instrumental",
-    "Lofi",
-    "Motivating",
-    "Nature-instrument",
-    "Nature-melodies",
-    "Scene-audio",
+    "Happy",
+    "Calm",
+    "Nature",
+    "Sad",
+    "Spiritual"
   ]
   const [dropdownOpen, setDropDownOpen] = useState(false)
   const toggleDropdown = () => {
