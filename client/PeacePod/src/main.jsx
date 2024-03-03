@@ -17,6 +17,11 @@ import { Four78Technique } from './components/CommonComponents/BreathingComponen
 import AllMusic from './Pages/Music/AllMusic.jsx'
 import PlayMusic from './components/sound/PLayMusic.jsx'
 import { AuthProvider } from './context/AuthProvider.jsx'
+import CalmMusic from './Pages/Music/CalmMusic.jsx'
+import HappyMusic from './Pages/Music/HappyMusic.jsx'
+import NatureMusic from './Pages/Music/NatureMusic.jsx'
+import SadMusic from './Pages/Music/SadMusic.jsx'
+import SpiritualMusic from './Pages/Music/SpiritualMusic.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +36,12 @@ const router = createBrowserRouter(
       <Route path='/aboutus' element={<AboutUs />} />
       <Route path='/music' element={<Music />} >
         <Route path='' element={<AllMusic />} />
+        <Route path='/music/allmusic' element={<AllMusic />} />
+        <Route path='/music/calmmusic' element={<CalmMusic />} />
+        <Route path='/music/happymusic' element={<HappyMusic />} />
+        <Route path='/music/naturemusic' element={<NatureMusic />} />
+        <Route path='/music/sadmusic' element={<SadMusic />} />
+        <Route path='/music/spiritualmusic' element={<SpiritualMusic />} />
         <Route path='/music/:id' element={<PlayMusic />} />
       </Route>
 

@@ -58,7 +58,7 @@ export const Music = () => {
                       return null
                     }
                     return (
-                      <Link to='' onClick={()=>{
+                      <Link to={`/music/${music.toLowerCase()}music`} onClick={()=>{
                         toggleDropdown()
                         setSelectedGenre(music)
                       }}>

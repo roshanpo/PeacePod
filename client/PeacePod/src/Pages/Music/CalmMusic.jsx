@@ -3,14 +3,14 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
-const AllMusic = () => {
+const CalmMusic = () => {
   const [allMusic, setAllMusic] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/allmusic") // Replace with your API endpoint
-        const music_data = response.data.allmusic
+        const response = await axios.get("http://127.0.0.1:8000/api/category/calm") // Replace with your API endpoint
+        const music_data = response.data.category
         setAllMusic(music_data)
       } catch (error) {
         console.error("Error fetching music list:", error)
@@ -75,4 +75,4 @@ const AllMusic = () => {
   )
 }
 
-export default AllMusic
+export default CalmMusic
