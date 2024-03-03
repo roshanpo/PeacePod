@@ -104,6 +104,21 @@ export function Navbar() {
                 <span className="mx-2 text-base font-bold">About Us</span>
               </NavLink>
 
+              <NavLink
+                to="/talktohope"
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex transform items-center rounded-lg px-3 py-2 bg-gradient-to-r to-[#b275f0] from-[#db75d5] from-0% to-90% text-slate-900 tracking-wide"
+                    : "flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gradient-to-r to-[#b275f0] from-[#db75d5] from-0% to-90% hover:text-slate-900 hover:tracking-wide"
+                }
+              >
+                <MessageSquareHeart
+                  className="h-6 w-6 hover:h-7 hover:w-7"
+                  aria-hidden="true"
+                />
+                <span className="mx-2 text-base font-bold">Talk To Hope</span>
+              </NavLink>
+
             </div>
           </nav>
         </div>

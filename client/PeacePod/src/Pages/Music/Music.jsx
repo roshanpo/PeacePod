@@ -19,7 +19,7 @@ export const Music = () => {
   return (
     <>
     {/* <div className="w-full min-h-screen overflow-y-scroll music-background blur-sm"></div> */}
-    <div className="absolute w-full min-h-screen overflow-y-scroll music-background border-r-2">
+    <div className="absolute w-full min-h-screen overflow-y-scroll music-background border-r-2" >
       <div className=" relative z-20 ">
         <div className="flex flex-col mt-8 pl-8">
           <div className="justify-between mx-auto flex">

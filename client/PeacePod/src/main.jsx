@@ -22,6 +22,11 @@ import HappyMusic from './Pages/Music/HappyMusic.jsx'
 import NatureMusic from './Pages/Music/NatureMusic.jsx'
 import SadMusic from './Pages/Music/SadMusic.jsx'
 import SpiritualMusic from './Pages/Music/SpiritualMusic.jsx'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,8 +37,8 @@ const router = createBrowserRouter(
       {/* navbars */}
       <Route path='/usernavbar' element={<UserNavbar/>} />
 
-      
       <Route path='/aboutus' element={<AboutUs />} />
+      
       <Route path='/music' element={<Music />} >
         <Route path='' element={<AllMusic />} />
         <Route path='/music/allmusic' element={<AllMusic />} />
@@ -47,13 +52,8 @@ const router = createBrowserRouter(
 
       <Route path='/scene' element={<Scene/>} />
       <Route path='/relaxandbreathe' element={<RelaxAndBreathe/>} />
-      
         <Route path='/relaxandbreathe/deepbreathing' element={<DeepBreathing/>} />
         <Route path='/relaxandbreathe/4-7-8technique' element={<Four78Technique/>} />
-        
-
-      
-
       <Route path='/talktohope' element={<TalkToHope/>} />
       
     </Route>
@@ -63,10 +63,14 @@ const router = createBrowserRouter(
 
 )
 
+const queryClient = new QueryClient()
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router}/> 
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router}/> 
+      </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,
 )

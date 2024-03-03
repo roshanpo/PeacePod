@@ -31,7 +31,7 @@ export default function PlayMusic() {
   const navigate = useNavigate()
   const waveformRef = useRef(null)
   const wavesurfer = useRef(null)
-  const [playing, setPlaying] = useState(false)
+  const [playing, setPlaying] = useState(true)
   const [volume, setVolume] = useState(0.5)
   const [muted, setMuted] = useState(false)
   const [duration, setDuration] = useState(0)
@@ -131,30 +131,21 @@ console.log(audioURL)
         </div>
         <br /><br />
          <div>
+         <div className="text-center text-3xl uppercase font-semibold my-2 text-white">
+          Playing: {audioFileName.split(".")[0]}
+        </div>
       
     </div>
         <br /><br />
-        <div>
-      {/* {audioURL && (
-        <div>
-          <button onClick={togglePlay}>{playing ? 'Pause' : 'Play'}</button>
-          <audio ref={audioRef} controls>
-            <source src={audioURL} type="audio/mp3" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-      )} */}
-    </div>
-    {audioURL && (
-       <div className="text-right text-white bg-slate-600 bg-transparent bottom-4">
+        <div className="rounded-lg py-4 px-2" style={{ backdropFilter: "blur(50px)" }}>
+        {audioURL && (
+       <div className="text-right text-white bg-slate-600 bg-transparent bottom-4" >
       
-        <div className="text-center text-xl uppercase font-semibold my-2">
-          Playing: {audioFileName.split(".")[0]}
-        </div>
-        <div ref={waveformRef} style={{ width: "100%" }}>
+        
+        <div ref={waveformRef} style={{ width: "100%" }} className="py-4 px-2">
           {" "}
         </div>
-        <div className="text-center my-2">
+        <div className="text-center my-2 text-xl">
           <div className="flex gap-4 justify-center">
             <button className="" onClick={handlePlayPause}>
               {playing ? <Play /> : <PauseCircle />}
@@ -186,12 +177,12 @@ console.log(audioURL)
             </button>
           </div>
 
-          <div className="font-semibold">
+          <div className="font-semibold ">
             {" "}
             Volume: {Math.round(volume * 100)}%
           </div>
 
-          <div className="flex font-semibold text-lg justify-center gap-6">
+          <div className="flex font-semibold text-xl justify-center gap-6">
             <div>Current Time: {formatTime(currentTime)}</div>
             <div>Duration : {formatTime(duration)}</div>
           </div>
@@ -199,6 +190,8 @@ console.log(audioURL)
         
       </div> 
     )}
+    </div>
+    
       </div>
     </>
   )
