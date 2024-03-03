@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      screens:{
+        'xss' : '440px',
+        'xxl' : '1800px',
+      },
       backgroundImage:{
         'hero': "url('./public/images/bg-home.jpg')"
       },

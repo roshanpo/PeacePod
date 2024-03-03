@@ -15,6 +15,7 @@ import { UserNavbar } from './components/Navigation/UserNavbar.jsx'
 import { DeepBreathing } from './components/CommonComponents/BreathingComponents/DeepBreathing.jsx'
 import { Four78Technique } from './components/CommonComponents/BreathingComponents/Four78Technique.jsx'
 import AllMusic from './Pages/Music/AllMusic.jsx'
+import PlayMusic from './components/sound/PLayMusic.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route path='/aboutus' element={<AboutUs />} />
       <Route path='/music' element={<Music />} >
         <Route path='' element={<AllMusic />} />
+        <Route path='/music/:id' element={<PlayMusic />} />
       </Route>
 
       <Route path='/scene' element={<Scene/>} />
