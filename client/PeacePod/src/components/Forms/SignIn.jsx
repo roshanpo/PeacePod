@@ -1,12 +1,16 @@
 import { useForm } from "react-hook-form"
 import { NavLink } from "react-router-dom"
 import { DevTool } from "@hookform/devtools"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+// import AuthContext from "@/context/AuthProvider"
 import { Snackbar } from "@mui/material"
-import IconButton from '@mui/material/IconButton';
-import { X } from 'lucide-react';
+import IconButton from "@mui/material/IconButton"
+import { X } from "lucide-react"
+// import axios from "../../api/axios"
+// const LOGIN_URL = "/auth";
 
 export const SignIn = () => {
+  // const {setAuth}= useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const form = useForm({
     defaultValues: {
@@ -20,21 +24,24 @@ export const SignIn = () => {
   const { register, watch, formState, control, handleSubmit, reset } = form
   const { errors, isDirty, isSubmitting, isSubmitSuccessful } = formState
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // fetch data from backend
     // use axios and react query
     // if user found then show data
     console.log(data)
+    // try{
+    //   const response = await axios.post(LOGIN_URL, dara)
+    // }
   }
 
   useEffect(() => {
     if (isSubmitting) {
-      <h1>Submitting...</h1>
+      ;<h1>Submitting...</h1>
     }
   })
 
   useEffect(() => {
-    console.log('isSubmitSuccessful',isSubmitSuccessful)
+    console.log("isSubmitSuccessful", isSubmitSuccessful)
     if (isSubmitSuccessful) {
       setOpen(true)
       console.log("popupopen", open)
@@ -43,12 +50,12 @@ export const SignIn = () => {
   }, [isSubmitSuccessful, reset])
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
+    if (reason === "clickaway") {
+      return
     }
 
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const action = (
     <IconButton
@@ -58,10 +65,10 @@ export const SignIn = () => {
       onClick={handleClose}
     >
       <div className="rounded-full text-white px-1 py-1">
-      <X/>
+        <X />
       </div>
     </IconButton>
-    );
+  )
 
   return (
     <>
@@ -84,79 +91,79 @@ export const SignIn = () => {
             </p>
           </div>
           <div className="min-w-xs">
-          <form
-            action=""
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          >
-            {/* email */}
-            <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="block text-gray-700 text-sm font-bold mb-2"
-              >
-                Email
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
-                type="email"
-                placeholder="janedoe@gmail.com"
-                {...register("email", {
-                  required: "Username is required.",
-                  pattern: {
-                    value:
-                      /^[a-zA-Z0-9.!#%${|}]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                    message: "Please enter a valid email address",
-                  },
-                })}
-              />
-              <p className="text-sm italic text-red-500">
-                {errors.email?.message}
-              </p>
-            </div>
+            <form
+              action=""
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            >
+              {/* email */}
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                >
+                  Email
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="email"
+                  type="email"
+                  placeholder="janedoe@gmail.com"
+                  {...register("email", {
+                    required: "Username is required.",
+                    pattern: {
+                      value:
+                        /^[a-zA-Z0-9.!#%${|}]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      message: "Please enter a valid email address",
+                    },
+                  })}
+                />
+                <p className="text-sm italic text-red-500">
+                  {errors.email?.message}
+                </p>
+              </div>
 
-            {/* password */}
-            <div className="mb-4">
-              <label
-                htmlFor="password"
-                className="block text-gray-700 text-sm font-bold mb-2"
-              >
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="password"
-                {...register("password", {
-                  required: "Password is required.",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be at least 8 characters long",
-                  },
-                })}
-              />
-              <p className="text-sm italic text-red-500">
-                {errors.password?.message}
-              </p>
-            </div>
+              {/* password */}
+              <div className="mb-4">
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                >
+                  Password
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="password"
+                  type="password"
+                  placeholder="password"
+                  {...register("password", {
+                    required: "Password is required.",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    },
+                  })}
+                />
+                <p className="text-sm italic text-red-500">
+                  {errors.password?.message}
+                </p>
+              </div>
 
-            <div className="flex items-center justify-between">
-              <button
-                className="bg-[#2C2E44] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-                disabled={!isDirty || isSubmitting}
-              >
-                Sign In
-              </button>
-            </div>
-          </form>
+              <div className="flex items-center justify-between">
+                <button
+                  className="bg-[#2C2E44] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                  disabled={!isDirty || isSubmitting}
+                >
+                  Sign In
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      </div>
-      {open && 
+      {open && (
         <Snackbar
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           open={open}
@@ -165,7 +172,7 @@ export const SignIn = () => {
           onClose={handleClose}
           action={action}
         />
-      }
+      )}
 
       <DevTool control={control} />
     </>

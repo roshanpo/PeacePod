@@ -10,8 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^1.10.1",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
+    "@headlessui/react": "^1.7.18",
+    "@hookform/devtools": "^4.3.1",
+    "@mui/material": "^5.15.11",
+    "@tanstack/react-query": "^5.24.6",
+    "axios": "^1.6.7",
+    "lucide-react": "^0.344.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.0",
+    "react-router-dom": "^6.22.2",
+    "react-use-audio-player": "^2.2.0",
+    "wavesurfer.js": "^7.7.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
