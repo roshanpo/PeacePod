@@ -1,5 +1,5 @@
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import { useState } from "react"
+import { useState,useContext } from "react"
 import {
   MainContainer,
   ChatContainer,
@@ -12,9 +12,13 @@ import {
 import { talkToHope } from ".././../api/chatbot/index";
 
 import { useMutation } from '@tanstack/react-query';
+// import AuthContext from '/context/AuthContext';
+import AuthContext from '../../context/AuthContext'
 
 export const TalkToHope = () => {
-  
+
+  let {name} = useContext(AuthContext);
+  console.log(name)
   const [open, setOpen] = useState(false);
   const [typing, setTyping] = useState(false)
   const [messages, setMessages] = useState([
@@ -41,7 +45,6 @@ export const TalkToHope = () => {
   })
 
   const handlesend = (message) =>{
-    console.log("mutation called!");
     mutation.mutate(message);
     const newMessage = {
       message : message,
@@ -60,7 +63,9 @@ export const TalkToHope = () => {
 
   return (
     <>
+    
       <div className="w-full min-h-screen overflow-y-scroll bot-background">
+      <h1 className='bg-pink-200'>Hello {name}</h1>
         <div className="flex justify-center items-center my-7">
           <button
             onClick={()=>setOpen(!open)}
