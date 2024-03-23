@@ -1,15 +1,29 @@
 // add images and background and
+import AuthContext from '../../context/AuthContext'
 import { Button } from "../../components/CommonComponents/Button"
 import { ArrowRight } from "lucide-react"
-import { NavLink } from "react-router-dom"
+import { useContext } from "react"
+import { Link, NavLink } from "react-router-dom"
 export const Home = () => {
+  const {user, logoutUser} = useContext(AuthContext); 
   return (
     <>
+    <div>
+      {
+        user? (
+          <button className='bg-pink h-4 w-4' onClick={logoutUser}>logout</button>
+        ):
+        <Link to='/signin'>Login</Link>
+      }
+    </div>
+    <br /><br />
+    {user && <h1 className='mt-6'>Welcome {user.name}</h1>}
       <div className="home-background h-screen w-full">
         <div className="flex flex-flow-col gap-8 h-full">
           <div className="mx-auto w-full md:w-[60%] pt-14 pl-4 md:left-72">
             <div className="leading-snug enriqueta-bold text-6xl shadow-sm text-white">
-              <h1>Welcome to</h1>
+              
+              <h1>Welcome To</h1>
               <h1 className="tracking-[6px]">PEACEPOD</h1>
               
             </div>

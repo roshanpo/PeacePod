@@ -16,7 +16,8 @@ import { DeepBreathing } from './components/CommonComponents/BreathingComponents
 import { Four78Technique } from './components/CommonComponents/BreathingComponents/Four78Technique.jsx'
 import AllMusic from './Pages/Music/AllMusic.jsx'
 import PlayMusic from './components/sound/PLayMusic.jsx'
-import { AuthProvider } from './context/AuthProvider.jsx'
+// import { AuthProvider } from './context/AuthProvider.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
 import CalmMusic from './Pages/Music/CalmMusic.jsx'
 import HappyMusic from './Pages/Music/HappyMusic.jsx'
 import NatureMusic from './Pages/Music/NatureMusic.jsx'
@@ -26,12 +27,13 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-
+import PrivateRoute from './utils/PrivateRoute.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
-      <Route path='' element={<Home />} />
+      <Route path='' element={<Home />}  />
+      {/* <Route path="" element={<PrivateRoute Component={Home} />} /> */}
       <Route path='/signup' element={<SignUp />} />
       <Route path='/signin' element={<SignIn/>} />
       {/* navbars */}
@@ -54,7 +56,8 @@ const router = createBrowserRouter(
       <Route path='/relaxandbreathe' element={<RelaxAndBreathe/>} />
         <Route path='/relaxandbreathe/deepbreathing' element={<DeepBreathing/>} />
         <Route path='/relaxandbreathe/4-7-8technique' element={<Four78Technique/>} />
-      <Route path='/talktohope' element={<TalkToHope/>} />
+      {/* <Route path='/talktohope' element={<TalkToHope/>} /> */}
+      <Route path="talktohope" element={<PrivateRoute Component={TalkToHope} />} />
       
     </Route>
     
