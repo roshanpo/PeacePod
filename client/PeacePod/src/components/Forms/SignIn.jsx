@@ -6,32 +6,25 @@ import { useEffect, useState, useContext } from "react"
 import { Snackbar } from "@mui/material"
 import IconButton from "@mui/material/IconButton"
 import { X } from "lucide-react"
+import AuthContext from "../../context/AuthContext"
 // import axios from "../../api/axios"
 // const LOGIN_URL = "/auth";
 
 export const SignIn = () => {
-  // const {setAuth}= useContext(AuthContext)
+  const {loginUser} = useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const form = useForm({
-    defaultValues: {
-      username: "Jane Doe",
-      email: "jane.doe@example.com",
-      password: "password",
-      confirmpassword: "password",
-    },
+    // defaultValues: {
+    //   username: "Jane Doe",
+    //   password: "password",
+    // },
     mode: "onTouched",
   })
-  const { register, watch, formState, control, handleSubmit, reset } = form
+  const { register, formState, control, handleSubmit, reset } = form
   const { errors, isDirty, isSubmitting, isSubmitSuccessful } = formState
 
   const onSubmit = async (data) => {
-    // fetch data from backend
-    // use axios and react query
-    // if user found then show data
-    console.log(data)
-    // try{
-    //   const response = await axios.post(LOGIN_URL, dara)
-    // }
+    loginUser
   }
 
   useEffect(() => {
@@ -41,10 +34,8 @@ export const SignIn = () => {
   })
 
   useEffect(() => {
-    console.log("isSubmitSuccessful", isSubmitSuccessful)
     if (isSubmitSuccessful) {
       setOpen(true)
-      console.log("popupopen", open)
       reset()
     }
   }, [isSubmitSuccessful, reset])
@@ -93,7 +84,7 @@ export const SignIn = () => {
           <div className="min-w-xs">
             <form
               action=""
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(loginUser)}
               noValidate
               className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
             >
@@ -103,20 +94,15 @@ export const SignIn = () => {
                   htmlFor="email"
                   className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                  Email
+                  UserName
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
-                  type="email"
-                  placeholder="janedoe@gmail.com"
-                  {...register("email", {
+                  id="username"
+                  type="text"
+                  placeholder="janedoe"
+                  {...register("username", {
                     required: "Username is required.",
-                    pattern: {
-                      value:
-                        /^[a-zA-Z0-9.!#%${|}]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                      message: "Please enter a valid email address",
-                    },
                   })}
                 />
                 <p className="text-sm italic text-red-500">
