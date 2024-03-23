@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Video, Music
-from .serializers import VideoSerializer
+from .serializers import VideoSerializer, MusicSerializer
 from chatbot.chat import get_response
 import logging
 import os
@@ -45,20 +45,25 @@ def get_music(request, music_name):
     music_path = music.music_file.path
     return FileResponse(open(music_path, 'rb'), content_type='audio/mp3')
 
-@api_view(['GET'])
-def allmusic(request):
-    music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/all')  # Path to your music folder
-    music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
+# @api_view(['GET'])
+# def allmusic(request):
+#     music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/all')  # Path to your music folder
+#     music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
 
-    music_titles = [os.path.splitext(file)[0] for file in music_files]
-    return Response({'allmusic': music_titles})
+#     music_titles = [os.path.splitext(file)[0] for file in music_files]
+#     return Response({'allmusic': music_titles})
 
 @api_view(['GET'])
 def category(request, category_name):
-    categories = category_name
-    music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/%s'%(categories))  # Path to your music folder
-    music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
-    return Response({'category': music_files})
+    music_titles = Music.objects.filter(category=category_name).values_list('title', flat=True)
+    
+
+    # If no music files are found for the given category, return a 404 response
+    if not music_titles:
+        return Response({'error': 'No music files found for the given category'}, status=404)
+
+    # Return a response with the list of music files
+    return Response({'category': list(music_titles)})
 
 
 @api_view(['POST'])
@@ -77,3 +82,48 @@ def chat(request):
             return Response({'message': 'Success', 'result': result}, status=status.HTTP_200_OK)
     # If the request method is not POST, return a method not allowed response
     return Response({'message': 'Method Not Allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+#For Admin
+
+@api_view(['POST'])
+def upload_music(request):
+    serializer = MusicSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['DELETE'])
+def delete_music(request, music_id):
+    try:
+        music = Music.objects.get(id=music_id)
+        music_file_path = music.music_file.path
+        music.delete()  # Delete the music object from the database
+        if os.path.exists(music_file_path):
+            os.remove(music_file_path)  # Delete the music file from the file system
+        return Response({'message': 'Music deleted successfully'}, status=status.HTTP_200_OK)
+    except Music.DoesNotExist:
+        return Response({'error': 'Music not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['PUT'])
+def update_music(request, pk):
+    try:
+        music = Music.objects.get(id=pk)
+        music_file_path = music.music_file.path
+    except Music.DoesNotExist:
+        return Response({"error": "Music file not found"}, status=404)
+    if os.path.exists(music_file_path):
+        os.remove(music_file_path)  # Delete the music file from the file system
+    serializer = MusicSerializer(music, data=request.data)
+    if serializer.is_valid():
+        if os.path.exists(music.music_file.path):
+            return Response("Same Music Already Exists")
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
