@@ -9,8 +9,9 @@ const AllMusic = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/allmusic") // Replace with your API endpoint
-        const music_data = response.data.allmusic
+        const response = await axios.get("http://127.0.0.1:8000/api/category/All") 
+        // console.log(response.data);// Replace with your API endpoint
+        const music_data = response.data.category
         setAllMusic(music_data)
       } catch (error) {
         console.error("Error fetching music list:", error)
@@ -20,10 +21,12 @@ const AllMusic = () => {
     fetchData()
   }, [])
 
+  console.log(allMusic)
   return (
     <>
+    {/* <div className="w-full h-full lg:ml-56"> */}
       <div className="grid xss:grid-cols-2 md:grid-flow-col md:grid-cols-2 md:grid-rows-5 lg:grid-cols-3 gap-4 lg:grid-rows-3 pb-4">
-        {allMusic.slice(0, 8).map((music) => {
+        {allMusic.slice(3, 12).map((music) => {
           if (!music) {
             return null
           }
@@ -71,6 +74,7 @@ const AllMusic = () => {
           )
         })}
       </div>
+    {/* </div> */}
     </>
   )
 }

@@ -8,19 +8,14 @@ import {
   MessageInput,
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react"
-
 import { talkToHope } from ".././../api/chatbot/index";
-
 import { useMutation } from '@tanstack/react-query';
-// import AuthContext from '/context/AuthContext';
-import AuthContext from '../../context/AuthContext'
 
 export const TalkToHope = () => {
 
-  let {name} = useContext(AuthContext);
-  console.log(name)
   const [open, setOpen] = useState(false);
   const [typing, setTyping] = useState(false)
+ 
   const [messages, setMessages] = useState([
     {
       message: "Hello i am HOPE, a chatbot.",
@@ -64,8 +59,7 @@ export const TalkToHope = () => {
   return (
     <>
     
-      <div className="w-full min-h-screen overflow-y-scroll bot-background">
-      <h1 className='bg-pink-200'>Hello {name}</h1>
+      <div className="w-full h-screen lg:ml-48 bot-background">
         <div className="flex justify-center items-center my-7">
           <button
             onClick={()=>setOpen(!open)}

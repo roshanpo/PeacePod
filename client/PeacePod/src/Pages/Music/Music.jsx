@@ -19,8 +19,8 @@ export const Music = () => {
   return (
     <>
     {/* <div className="w-full min-h-screen overflow-y-scroll music-background blur-sm"></div> */}
-    <div className="absolute w-full min-h-screen overflow-y-scroll music-background border-r-2" >
-      <div className=" relative z-20 ">
+    <div className="w-full min-h-screen music-background lg:ml-48" >
+      {/* <div className=" relative z-20 "> */}
         <div className="flex flex-col mt-8 pl-8">
           <div className="justify-between mx-auto flex">
             <div className="px-4 py-2">
@@ -52,7 +52,7 @@ export const Music = () => {
                 </button>
               </div>
               {dropdownOpen && (
-                <div className="flex absolute z-30 top-[40px] flex-col w-52 bg-blue-300 roundeed-md">
+                <div className="flex absolute z-30 top-[40px] flex-col w-52 bg-white roundeed-md">
                   {music_genre.map((music) => {
                     if (!music) {
                       return null
@@ -73,7 +73,7 @@ export const Music = () => {
               )}
             </div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
 
       <div className=" z-10 relative w-full mt-6">

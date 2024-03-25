@@ -4,11 +4,13 @@ import { Button } from "../../components/CommonComponents/Button"
 import { ArrowRight } from "lucide-react"
 import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
+import useAuth from '../../hooks/useAuth'
+
 export const Home = () => {
-  const {user, logoutUser} = useContext(AuthContext); 
+  const {user, logoutUser} = useAuth();
   return (
     <>
-    <div>
+    {/* <div>
       {
         user? (
           <button className='bg-pink h-4 w-4' onClick={logoutUser}>logout</button>
@@ -17,8 +19,8 @@ export const Home = () => {
       }
     </div>
     <br /><br />
-    {user && <h1 className='mt-6'>Welcome {user.name}</h1>}
-      <div className="home-background h-screen w-full">
+    {user && <h1 className='mt-6'>Welcome {user.name}</h1>} */}
+      <div className="home-background min-h-screen w-full lg:ml-48">
         <div className="flex flex-flow-col gap-8 h-full">
           <div className="mx-auto w-full md:w-[60%] pt-14 pl-4 md:left-72">
             <div className="leading-snug enriqueta-bold text-6xl shadow-sm text-white">

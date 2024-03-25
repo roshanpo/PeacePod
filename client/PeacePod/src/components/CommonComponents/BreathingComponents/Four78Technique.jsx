@@ -1,83 +1,85 @@
-import React, { useEffect, useState } from "react";
-import { ArrowLeft, Play } from "lucide-react";
+import React,{useEffect, useState} from 'react'
+import './relax.css'
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { MoveLeft } from 'lucide-react';
 
 export const Four78Technique = () => {
-  const [buttonClicked, setButtonClicked] = useState(false);
-  const [containerClass, setContainerClass] = useState("four-container");
-  const [animateCircleClass, setAnimateCircleClass] = useState("animate-circle");
-  const [displayText, setDisplayText] = useState("Ready?");
-  const [pointerContainerAnimation, setPointerContainerAnimation] = useState("paused");
-
+  const [isRunning, setIsRunning] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
-    const totalTime = 19000;
-    const breatheTime = 4000;
-    const holdTime = 7000;
+    const container = document.getElementById('container');
+    const text = document.getElementById('text');
 
-    function breathAnimation() {
-      setDisplayText("Breathe In!");
-      setContainerClass("four-container grow");
-      setAnimateCircleClass("animate-circle animate-circle-inhale");
+    const totalTime = 7500;
+    const breatheTime = (totalTime / 5) * 2;
+    const holdTime = totalTime / 5;
+
+    const breathAnimation = () => {
+      text.innerText = 'Breathe In!';
+      container.className = 'four-container fourgrow';
 
       setTimeout(() => {
-        setDisplayText("Hold");
+        text.innerText = 'Hold';
 
         setTimeout(() => {
-          setDisplayText("Breathe Out!");
-          setContainerClass("four-container shrink");
-          setAnimateCircleClass("animate-circle animate-circle-exhale");
+          text.innerText = 'Breathe Out!';
+          container.className = 'four-container fourshrink';
         }, holdTime);
       }, breatheTime);
-    }
+    };
 
-    if (buttonClicked) {
+    if(!isRunning){
+      text.innerText = 'Start Breathing!';
+    }
+    else{
       breathAnimation();
-      setPointerContainerAnimation("running");
+      const interval = setInterval(breathAnimation, totalTime);
 
-      // Set an interval for the breathAnimation
-      const intervalId = setInterval(breathAnimation, totalTime);
-
-      // Clean up the interval when the component unmounts
-      return () => clearInterval(intervalId);
+      return () => clearInterval(interval);
     }
-  }, [buttonClicked]);
+    
+  }, [isRunning]);
 
-  const handleButtonClick = () => {
-    setButtonClicked(true);
-  };
+  const handleanimation = () =>{
+    // alert('clicked')
+    setIsRunning(true)
+  }
+
+  const stopanimation = () =>{
+    // alert('clicked');
+    setIsRunning(false)
+  }
+
+  const goBack = () =>{
+    navigate(-1)
+  }
 
   return (
     <>
-      <div className="w-full min-h-screen overflow-y-scroll text-white music-background border-r-2 border-red-400">
-        <div className="w-full flex flex-flow-col justify-between mt-8 p-2 text-center leading-snug tracking-wide enriqueta-bold text-4xl ">
-          <div className="w-[90%]">4-7-8 Technique</div>
-          <div className="pr-4">
-            <button onClick={() => navigate(-1)}>
-              <ArrowLeft />
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-14 text-center">
-          <div className="four-breathing" id="four-breathing">
-            <div className={containerClass} id="four-container">
-              <div className="circle-four"></div>
-              <div className={animateCircleClass} id="animate-circle"></div>
-              <p>{displayText}</p>
-              <div className="pointer-container-four" style={{ animationPlayState: pointerContainerAnimation }}>
-                <span className="pointer-four"></span>
-              </div>
-              <div className="gradient-circle-four"></div>
-            </div>
-
-            <button
-              className="start-technique-btn"
-              onClick={handleButtonClick}
-            >
-              Begin
-            </button>
-          </div>
-        </div>
+    
+    <div className='w-full h-screen lg:ml-52 background'>
+      <button className='mt-10 px-4 py-2' onClick={goBack}> <MoveLeft /> </button>
+    <div className="four-container w-[600px] mx-auto" id="container">
+      <div className="four-circle"></div>
+      <p id="text"></p>
+      {
+        isRunning &&
+        <div className="four-pointer-container">
+        <span className="four-pointer"></span>
       </div>
-    </>
+      }
+      
+      <div className="four-gradient-circle"></div>
+    </div>
+    
+    <div className='mt-20 items-center text-center' >
+    {isRunning && <Button className='bg-white text-black hover:bg-slate-300' onClick={stopanimation}>Stop</Button> } 
+    {!isRunning && <Button className='bg-white text-black hover:bg-slate-300' onClick={handleanimation}>Start</Button>}
+    </div>
+    
+    
+     </div>
+     </>
   );
-};
+}

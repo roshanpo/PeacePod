@@ -67,7 +67,7 @@ export const SignUp = () => {
 
   return (
     <>
-      <div className="w-full overflow-y-scroll signup-background min-h-screen">
+      <div className="lg:ml-48 w-full overflow-y-scroll signup-background min-h-screen">
         {/* <div className=""> */}
           <div className="flex-flow-col p-10 w-[400px] md:w-[500px] mx-auto">
             <div className="">
