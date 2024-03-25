@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Video, Music
-from .serializers import VideoSerializer, MusicSerializer
+from .serializers import VideoSerializer, MusicSerializer, UserSerializer
 from chatbot.chat import get_response
 import logging
 import os
@@ -31,6 +31,16 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
+
+@api_view(['POST'])
+def create_user(request):
+    if request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET'])
 def get_video(request, video_name):
     video = get_object_or_404(Video, title=video_name)
@@ -45,21 +55,28 @@ def get_music(request, music_name):
     music_path = music.music_file.path
     return FileResponse(open(music_path, 'rb'), content_type='audio/mp3')
 
+# @api_view(['GET'])
+# def allmusic(request):
+#     music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/all')  # Path to your music folder
+#     music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
+
+#     music_titles = [os.path.splitext(file)[0] for file in music_files]
+#     return Response({'allmusic': music_titles})
+
 @api_view(['GET'])
-def allmusic(request):
-    music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/all')  # Path to your music folder
-    music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
-
-    music_titles = [os.path.splitext(file)[0] for file in music_files]
-    return Response({'allmusic': music_titles})
+def category(request, category):
+    music = Music.objects.filter(category=category)
+    titles = [item.title for item in music]  # Extracting titles from queryset
+    return Response(titles)
+    # categories = category_name
+    # music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/%s'%(categories))  # Path to your music folder
+    # music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
+    # return Response({'category': music_files})
 
 @api_view(['GET'])
-def category(request, category_name):
-    categories = category_name
-    music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/%s'%(categories))  # Path to your music folder
-    music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
-    return Response({'category': music_files})
-
+def all_categories(request):
+    categories = Music.objects.values_list('category', flat=True).distinct()
+    return Response(categories)
 
 @api_view(['POST'])
 def chat(request):
