@@ -9,6 +9,7 @@ from rest_framework import status
 from .models import Video, Music
 from .serializers import VideoSerializer, MusicSerializer, UserSerializer
 from chatbot.chat import get_response
+from Music_recommender import recommendation
 import logging
 import os
 
@@ -95,6 +96,22 @@ def chat(request):
     # If the request method is not POST, return a method not allowed response
     return Response({'message': 'Method Not Allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+@api_view(['POST'])
+def musicRecommend(request):
+    if request.method == 'POST':
+        # You can access the data sent in the request using request.data
+        # Example: data = request.data.get('key_name', None)
+            # Call your method or perform your logic here
+            #print(request)
+            logger.debug("This is a test debug message")
+            logger.debug(f"Request payload: {request.data}")
+            message = request.data.get('Content', '')
+            result = recommendation(message)
+
+            # Return a response with a success message
+            return Response({'message': 'Success', 'result': result}, status=status.HTTP_200_OK)
+    # If the request method is not POST, return a method not allowed response
+    return Response({'message': 'Method Not Allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 @api_view(['POST'])
 def upload_music(request):

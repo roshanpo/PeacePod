@@ -9,7 +9,7 @@ const AllMusic = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/allmusic") // Replace with your API endpoint
+        const response = await axios.get("http://127.0.0.1:8000/api/category/All") // Replace with your API endpoint
         const music_data = response.data.allmusic
         setAllMusic(music_data)
       } catch (error) {
