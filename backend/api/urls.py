@@ -17,7 +17,7 @@ urlpatterns = [
     path('upload-music/', upload_music, name='upload-music'),
     path('update-music/<int:pk>/', update_music, name='update-music'),
     path('delete-music/<int:music_id>/', delete_music, name='delete-music'),
-    path('create-user/', create_user, name='create-user'),
+    path('register/', create_user, name='create-user'),
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

@@ -28,12 +28,14 @@ class Music(models.Model):
 #         user.save(using=self._db)
 #         return user
 
-# class CustomUser(AbstractBaseUser):
-#     email = models.EmailField(verbose_name='email', max_length=255, unique=True)
-#     username = models.CharField(max_length=30, unique=True)
+class CustomUser(AbstractBaseUser):
+    # first_name = models.CharField(max_length=30)
+    # last_name = models.CharField(max_length=30)
+    email = models.EmailField(verbose_name='email', max_length=255, unique=True)
+    username = models.CharField(max_length=30, unique=True)
     
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
 
 #     objects = CustomUserManager()
 

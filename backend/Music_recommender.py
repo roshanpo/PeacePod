@@ -19,6 +19,7 @@ def tokenize(doc):
     translator = str.maketrans('', '', string.punctuation)
     doc = doc.translate(translator)
     tokens = doc.split()
+    print(tokens)
     return tokens
 
 
@@ -51,13 +52,12 @@ def cosine_similarity(matrix):
 docs = df['tags']  
 tfidf_matrix = calculate_tfidf(docs)
 similarity_matrix = cosine_similarity(tfidf_matrix)
-# print(similarity_matrix)
+
 
 
 def recommendation(song_df):
     idx = df[df['title'] == song_df].index[0]
     distances = sorted(list(enumerate(similarity_matrix[idx])),reverse=True,key=lambda x:x[1])
-    # print(distances)
     
     songs = []
     for m_id in distances[1:6]:
@@ -144,4 +144,4 @@ def recommendation(song_df):
 #         songs.append(df.iloc[m_id[0]].title)
         
 #     return songs
-# print(recommendation('Departure'))
+print(recommendation('Departure'))
