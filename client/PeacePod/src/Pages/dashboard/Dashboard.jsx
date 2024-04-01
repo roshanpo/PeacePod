@@ -10,8 +10,6 @@ import MainNavbar from "@/components/Navigation/MainNav"
 export default function DashboardLayout() {
   const { user } = useAuth()
     const location = useLocation();
-  console.log(location.pathname)
-
   return (
     <>
       {/* {location.pathname.startsWith('/dashboard')? ( */}

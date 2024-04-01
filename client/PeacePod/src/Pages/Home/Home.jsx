@@ -68,11 +68,11 @@ export const Home = () => {
             <div className="hidden lg:flex lg:flex-col gap-4 pr-4 pt-4 max-h-screen justify-end sm:-mt-44 lg:mt-0 lg:pl-0 lg:pr-7">
 
               <div className="relative  w-auto">
-                <img
+                {/* <img
                   src="/images/image1.jpg"
                   alt="meditationimg1"
                   className="aspect-[2/3] rounded-xl bg-gray-900/5 object-cover shadow-lg"
-                />
+                /> */}
                 <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
             </div>

@@ -18,16 +18,16 @@ export default function TopNav() {
               <div className="hidden px-2 lg:flex lg:px-0">
                 <div className="flex shrink-0 items-center">
                   <Link to="/">
-                    <img
-                      className="block h-8 w-auto lg:hidden"
-                      src="/news/ybc-logo-white.png"
-                      alt="YBC NEWS"
-                    />
-                    <img
-                      className="hidden h-[80%] w-auto lg:block"
-                      src="/news/ybc-logo-white.png"
-                      alt="YBC NEWS"
-                    />
+                  <img
+                  className="block h-14 w-auto lg:hidden rounded-2xl"
+                  src="/images/peacepod_logo.png"
+                  alt="PEACE POD LOGO"
+                />
+                <img
+                  className="hidden h-14 w-auto lg:block rounded-2xl"
+                  src="/images/peacepod_logo.png"
+                  alt="PEACE POD LOGO"
+                />
                   </Link>
                 </div>
               </div>

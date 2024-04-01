@@ -10,7 +10,7 @@ import { UserNavbar } from "./UserNavbar";
 
 export default function TopNavbar() {
   let TopNavbarItems = [
-    { href: "/", title: "Recommended for you" },
+    { href: "/recommendedmusic", title: "Recommended for you" },
     // { href: "/#", title: "Favorites" },
     // { href: "news/calendar", title: "Calendar" }
   ];
@@ -32,16 +32,16 @@ export default function TopNavbar() {
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
           <div className="hidden px-2 lg:flex lg:px-0">
-            <div className="flex shrink-0 items-center">
+            <div className="flex shrink-0 items-center px-1 py-1 ">
               <Link to="/" className="inline-block">
                 <img
-                  className="block h-8 w-auto lg:hidden"
-                  src=""
+                  className="block h-14 w-auto lg:hidden rounded-2xl"
+                  src="/images/peacepod_logo.png"
                   alt="PEACE POD LOGO"
                 />
                 <img
-                  className="hidden h-[80%] w-auto lg:block"
-                  src="/news/ybc-logo-white.png"
+                  className="hidden h-14 w-auto lg:block rounded-2xl"
+                  src="/images/peacepod_logo.png"
                   alt="PEACE POD LOGO"
                 />
               </Link>

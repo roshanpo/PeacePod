@@ -1,26 +1,28 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Outlet } from "react-router-dom"
+import axios from "axios"
 
 export const Music = () => {
-  const music_genre = [
-    "All",
-    "Happy",
-    "Calm",
-    "Nature",
-    "Sad",
-    "Spiritual"
-  ]
+  const [category, setCategory] = useState()
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get("http://127.0.0.1:8000/api/allcategories")
+      setCategory(res.data)
+    }
+    fetchData()
+  }, [])
+
   const [dropdownOpen, setDropDownOpen] = useState(false)
   const toggleDropdown = () => {
     setDropDownOpen(!dropdownOpen)
   }
-  const [selectedGenre, setSelectedGenre] = useState('Music')
+  const [selectedGenre, setSelectedGenre] = useState("Music")
   return (
     <>
-    {/* <div className="w-full min-h-screen overflow-y-scroll music-background blur-sm"></div> */}
-    <div className="w-full min-h-screen music-background lg:ml-48" >
-      {/* <div className=" relative z-20 "> */}
+      {/* <div className="w-full min-h-screen overflow-y-scroll music-background blur-sm"></div> */}
+      <div className="w-full min-h-screen music-background lg:ml-48">
+        {/* <div className=" relative z-20 "> */}
         <div className="flex flex-col mt-8 pl-8">
           <div className="justify-between mx-auto flex">
             <div className="px-4 py-2">
@@ -53,34 +55,36 @@ export const Music = () => {
               </div>
               {dropdownOpen && (
                 <div className="flex absolute z-30 top-[40px] flex-col w-52 bg-white roundeed-md">
-                  {music_genre.map((music) => {
+                  {category.map((music) => {
                     if (!music) {
                       return null
                     }
                     return (
-                      <Link to={`/music/${music.toLowerCase()}music`} onClick={()=>{
-                        toggleDropdown()
-                        setSelectedGenre(music)
-                      }}>
+                      <Link
+                        to={`/music/${music.toLowerCase()}music`}
+                        onClick={() => {
+                          toggleDropdown()
+                          setSelectedGenre(music)
+                        }}
+                      >
                         <div className="block rounded-md px-4 py-2 text-lg capitalize text-gray-800 hover:bg-indigo-500 hover:text-white">
                           {music}
                         </div>
                       </Link>
-
                     )
                   })}
                 </div>
               )}
             </div>
           </div>
-        {/* </div> */}
-      </div>
-
-      <div className=" z-10 relative w-full mt-6">
-        <div className="pl-4 grid grid-flow-col pr-4">
-          <Outlet/>
+          {/* </div> */}
         </div>
-      </div>
+
+        <div className=" z-10 relative w-full mt-6">
+          <div className="pl-4 grid grid-flow-col pr-4">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </>
   )

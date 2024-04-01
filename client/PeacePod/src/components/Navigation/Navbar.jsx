@@ -5,6 +5,7 @@ import { HeartPulse, Home, MessageSquareHeart, Music, UsersRound, X } from "luci
 import CustomLink from "@/lib/CustomLink"
 import { useLocation } from "react-router-dom"
 import DashboardLayout from "@/Pages/dashboard/Dashboard"
+import '/images/peacepod_logo.png'
 
 const navigation = [
   {
@@ -105,8 +106,8 @@ export function Navbar() {
                    <div className="flex h-16 shrink-0 items-center">
                      <img
                        className="h-8 w-auto"
-                       src="/ybc-logo-white.png"
-                       alt="PEACE POD LOGO"
+                       src="/images/peacepod_logo.png"
+                       alt="peacepod logo"
                      />
                    </div>
                    <nav className="flex flex-1 flex-col">

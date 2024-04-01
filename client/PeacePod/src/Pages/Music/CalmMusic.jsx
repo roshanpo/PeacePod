@@ -9,8 +9,8 @@ const CalmMusic = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/category/calm") // Replace with your API endpoint
-        const music_data = response.data.category
+        const response = await axios.get("http://127.0.0.1:8000/api/category/Calm/") // Replace with your API endpoint
+        const music_data = response.data
         setAllMusic(music_data)
       } catch (error) {
         console.error("Error fetching music list:", error)
@@ -19,6 +19,8 @@ const CalmMusic = () => {
 
     fetchData()
   }, [])
+
+  console.log(allMusic)
 
   return (
     <>
@@ -33,8 +35,8 @@ const CalmMusic = () => {
               className="w-full md:min-w-[300px] transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 relative rounded-md border"
             >
               <img
-                src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-                alt="Laptop"
+                src="/images/music-images/heavenly.jpg"
+                alt="music-image"
                 className="h-[200px] w-full rounded-t-md object-cover"
               />
 

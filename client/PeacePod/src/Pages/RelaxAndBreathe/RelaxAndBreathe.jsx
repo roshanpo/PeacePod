@@ -18,7 +18,7 @@ export const RelaxAndBreathe = () => {
             description="Deep breathing is one of the
             best way to relax and let your worries go.
             "
-            imageUrl=""
+            imageUrl="./images/breathing-images/deep-breathing-mobile.jpg"
             clickUrl="https://www.healthline.com/health/diaphragmatic-breathing#"
             to="deepbreathing"
             />
@@ -26,7 +26,7 @@ export const RelaxAndBreathe = () => {
             title="4-7-8 Technique"
             description="The 4-7-8 technique forces the mind
             and body to focus on regulating the breath."
-            imageUrl=""
+            imageUrl="./images/breathing-images/four-seven-eight-mobile.jpg"
             clickUrl="https://www.healthline.com/health/4-7-8-breathing"
             to="4-7-8technique"
             />

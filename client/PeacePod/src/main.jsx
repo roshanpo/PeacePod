@@ -5,7 +5,6 @@ import App from './App.jsx'
 import './index.css'
 import './app.css'
 import { Home } from './Pages/Home/Home.jsx'
-import { AboutUs } from './Pages/AboutUs/AboutUs.jsx'
 import { Music } from './Pages/Music/Music.jsx'
 // import { Scene } from './Pages/Scene/Scene.jsx'
 import { RelaxAndBreathe } from './Pages/RelaxAndBreathe/RelaxAndBreathe.jsx'
@@ -32,6 +31,8 @@ import AddMusic from './Pages/dashboard/AddMusic.jsx'
 import DashboardLayout from './Pages/dashboard/Dashboard.jsx'
 import ManageMusic from './Pages/dashboard/ManageMusic.jsx'
 import ManageUsers from './Pages/dashboard/ManageUsers.jsx'
+import AboutUs from './Pages/AboutUs/AboutUs.jsx'
+import Recommendation from './Pages/recommendation/Recommendation.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
           <Route path='dashboard/addmusic' element={<AddMusic />}/>
           <Route path='dashboard/managemusic' element={<ManageMusic />} />
           <Route path='dashboard/manageusers' element={<ManageUsers />}/>
+          <Route path='recommendedmusic' element={<Recommendation />} />
         </Route>
       </Route>
       
