@@ -1,35 +1,31 @@
 import { useForm } from "react-hook-form"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { DevTool } from "@hookform/devtools"
 import { useEffect, useState } from "react"
 import useAuth from "@/hooks/useAuth"
 import { useToast } from "../ui/use-toast"
-// import Loader from "../ui/loader"
 
 export const SignIn = () => {
+  const navigate = useNavigate();
   const { loginUser } = useAuth()
   const { toast } = useToast()
-  // const [isLoading, setIsLoading] = useState(false)
   const form = useForm({
     mode: "onTouched",
   })
   const { register, formState, control, handleSubmit, reset } = form
-  const { errors, isSubmitting, isSubmitSuccessful } = formState
+  const { errors, isSubmitSuccessful } = formState
 
   useEffect(() => {
-    // if (isSubmitting) {
-    //   setIsLoading(true)
-    // }
     if (isSubmitSuccessful) {
       toast({title: "Login Successful"})
-      // setIsLoading(false)
+      navigate('/')
       reset()
     }
   }, [isSubmitSuccessful, reset])
 
   return (
     <>
-      <div className="lg:ml-48 w-full min-h-screen signup-background">
+      <div className="lg:ml-52 w-full min-h-screen signup-background">
         <div className="flex-flow-col p-10 w-[400px] md:w-[500px] mx-auto">
           <div className="">
             <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl shadow-sm enriqueta-bold">

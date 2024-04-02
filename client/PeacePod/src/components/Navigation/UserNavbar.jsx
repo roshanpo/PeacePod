@@ -52,40 +52,10 @@ export function UserNavbar({
             <p className="text-sm font-medium leading-none">
               {user?.name}
             </p>
-            {/* <p className="text-xs leading-none text-muted-foreground">
-              {user?.email}
-            </p> */}
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {isDashboard && (
-          <>
-            <DropdownMenuItem
-              asChild
-              onSelect={() => {
-                changePasswordModal.toggle()
-              }}
-            >
-              <span className="flex w-full items-center gap-2">
-                <span>
-                  <KeyRound className="h-4 w-4" />
-                </span>
-                <span>Change Password</span>
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link
-                to="manageaccount"
-                className="flex w-full items-center gap-2"
-              >
-                <span className="inline-block">
-                  <UserCircleIcon className="h-4 w-4" />
-                </span>
-                <span>Manage Account</span>
-              </Link>
-            </DropdownMenuItem>
-          </>
-        )}
+
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link to={to} className="flex w-full items-center gap-2">

@@ -1,73 +1,46 @@
 import { useForm } from "react-hook-form"
 import { NavLink } from "react-router-dom"
-import { DevTool } from "@hookform/devtools"
-import { useEffect, useState } from "react"
-import { Snackbar } from "@mui/material"
-import IconButton from "@mui/material/IconButton"
-import { X } from "lucide-react"
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { useMutation } from "@tanstack/react-query"
+import { registerUser } from "@/api/login"
 
 export const SignUp = () => {
-  const [open, setOpen] = useState(false)
   const navigate = useNavigate();
   const form = useForm({
-    defaultValues: {
-      username: "Jane Doe",
-      email: "jane.doe@example.com",
-      password: "password",
-      confirmpassword: "password",
-    },
     mode: "onTouched",
   })
-  const { register, watch, formState, control, handleSubmit, reset } = form
+  const { register, watch, formState, handleSubmit, reset } = form
   const { errors, isDirty, isSubmitting, isSubmitSuccessful } = formState
 
-  const onSubmit = (data) => {
-    // send the data to backend calling api
-    // use axios and react query
-    navigate('/')
-    
-  }
-
-  useEffect(() => {
-    if (isSubmitting) {
-      <h1>Submitting...</h1>
-    }
+  const mutation = useMutation({
+    mutationFn: async(data)=> registerUser(data),
+    onSuccess: () => {
+      navigate('/')
+    },
   })
 
   useEffect(() => {
-    console.log("isSubmitSuccessful", isSubmitSuccessful)
     if (isSubmitSuccessful) {
-      setOpen(true)
-      console.log("popupopen", open)
+      toast({title: "Register Successful"})
       reset()
     }
   }, [isSubmitSuccessful, reset])
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return
+
+  const onSubmit = (data) => {
+    const newData = {
+      "username": data.username,
+      "password": data.password,
+      "email": data.email
     }
-
-    setOpen(false)
+    mutation.mutate(newData)
+    
   }
-
-  const action = (
-    <IconButton
-      size="small"
-      aria-label="close"
-      color="inherit"
-      onClick={handleClose}
-    >
-      <div className="rounded-full text-white px-1 py-1">
-        <X />
-      </div>
-    </IconButton>
-  )
 
   return (
     <>
-      <div className="lg:ml-48 w-full overflow-y-scroll signup-background min-h-screen">
+      <div className="lg:ml-52 w-full overflow-y-scroll signup-background min-h-screen">
         {/* <div className=""> */}
           <div className="flex-flow-col p-10 w-[400px] md:w-[500px] mx-auto">
             <div className="">
@@ -203,18 +176,6 @@ export const SignUp = () => {
           </div>
         </div>
       </div>
-      {open && (
-        <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          open={open}
-          autoHideDuration={4000}
-          message="Sign In Sucessful."
-          onClose={handleClose}
-          action={action}
-        />
-      )}
-
-      <DevTool control={control} />
     </>
   )
 }

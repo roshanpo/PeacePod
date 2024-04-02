@@ -37,20 +37,7 @@ export default function TopNav() {
                   {user && (
                     <UserNavbar Icon={HomeIcon} title="Back to Home" to="/" />
                   )}
-                  {/* {TopNavbarItems.map((item: any) => {
-                    if (item.isCountry) {
-                      return <CountrySelect key={item.title} />
-                    }
-
-                    return (
-                      <CustomLinkTop
-                        key={item.title}
-                        to={item.href}
-                        title={item.title}
-                        className="relative after:absolute after:-right-0 after:top-2 after:h-[85%] after:w-[1px] after:bg-gray-600 [&:last-of-type]:after:hidden"
-                      />
-                    )
-                  })} */}
+                  
                 </div>
                 <div></div>
               </div>

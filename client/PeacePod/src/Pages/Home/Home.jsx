@@ -20,11 +20,13 @@ export const Home = () => {
     </div>
     <br /><br />
     {user && <h1 className='mt-6'>Welcome {user.name}</h1>} */}
-      <div className="home-background min-h-screen w-full lg:ml-48">
-        <div className="flex flex-flow-col gap-8 h-full">
+      <div className="home-background min-h-screen w-full lg:ml-52">
+        <div className="flex flex-flow-col gap-8 h-full px-6">
           <div className="mx-auto w-full md:w-[60%] pt-14 pl-4 md:left-72">
             <div className="leading-snug enriqueta-bold text-6xl shadow-sm text-white">
-              
+              {
+                user && <h3 className='text-4xl capitalize'>{user.name},</h3>
+              }
               <h1>Welcome To</h1>
               <h1 className="tracking-[6px]">PEACEPOD</h1>
               

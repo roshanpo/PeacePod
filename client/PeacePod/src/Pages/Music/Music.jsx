@@ -20,9 +20,7 @@ export const Music = () => {
   const [selectedGenre, setSelectedGenre] = useState("Music")
   return (
     <>
-      {/* <div className="w-full min-h-screen overflow-y-scroll music-background blur-sm"></div> */}
-      <div className="w-full min-h-screen music-background lg:ml-48">
-        {/* <div className=" relative z-20 "> */}
+      <div className="w-full min-h-screen music-background lg:ml-52">
         <div className="flex flex-col mt-8 pl-8">
           <div className="justify-between mx-auto flex">
             <div className="px-4 py-2">
@@ -30,7 +28,6 @@ export const Music = () => {
                 Music
               </h3>
             </div>
-            {/* div for adding music and popover */}
             <div className="flex w-52 flex-col justify-between">
               <div className="mx-auto mt-2">
                 <button
@@ -61,6 +58,7 @@ export const Music = () => {
                     }
                     return (
                       <Link
+                      key={music}
                         to={`/music/${music.toLowerCase()}music`}
                         onClick={() => {
                           toggleDropdown()
@@ -77,7 +75,6 @@ export const Music = () => {
               )}
             </div>
           </div>
-          {/* </div> */}
         </div>
 
         <div className=" z-10 relative w-full mt-6">

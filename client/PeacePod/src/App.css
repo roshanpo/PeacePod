@@ -1,3 +1,7 @@
+body{
+  font-family: Inter;
+}
+
 /* loader css */
 .about-background{
   /* .background{ */
@@ -87,12 +91,13 @@
 }
 
 .bot-background{
-    background: url("/images/hopebot.jpg") center no-repeat ;
+    background: url("/images/music-bg.jpg") center no-repeat ;
     position: relative;
     background-size: cover;
     height: 100vh;	
     width: 100%;
     border: 2px transparent;
+    filter: blur(5px);
   }
   
   .home-background{
@@ -113,7 +118,7 @@
   
   /* adding font in whole page */
   /* for regulat text */
-  .enriqueta-regular {
+  /* .enriqueta-regular {
     font-family: "Enriqueta", serif;
     font-weight: 400;
     font-style: normal;
@@ -139,7 +144,7 @@
   
   .roboto{
     font-family: sans-serif;
-  }
+  } */
   
   .signup-background{
     background: url("/images/home-bg.jpg") center no-repeat ;

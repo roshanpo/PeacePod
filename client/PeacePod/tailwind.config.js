@@ -9,6 +9,10 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    fontFamily:{
+      'Inter':['Inter', 'sans-serif'],
+      'Urbanist': ['Urbanist', 'sans-serif']
+    },
     container: {
       center: true,
       padding: "2rem",
