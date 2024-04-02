@@ -27,6 +27,7 @@ const formatTime = (seconds) => {
 
 export default function PlayMusic() {
   const { id } = useParams()
+  // console.log(id)
   const music_name = id;
   const navigate = useNavigate()
   const waveformRef = useRef(null)
@@ -42,7 +43,7 @@ export default function PlayMusic() {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/music/${music_name}`, {
+      const response = await axios.get(`http://127.0.0.1:8000/api/music/${music_name.split('.')[0]}`, {
         responseType: 'arraybuffer' // Set the response type to 'arraybuffer'
       });
       const audioBlob = new Blob([response.data], { type: 'audio/mp3' }); // Create Blob object from arraybuffer

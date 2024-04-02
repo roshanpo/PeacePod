@@ -1,17 +1,21 @@
 import "./App.css"
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import { Navbar } from "./components/Navigation/Navbar"
-
+import { FullPageLoader } from "./components/ui/Loader"
+import { Suspense } from "react"
+import TopNavbar from "./components/Navigation/TopNavBar"
+import DashboardLayout from "./Pages/dashboard/Dashboard"
+import Layout from "./Layout"
 function App() {
+  const location = useLocation()
+
   return (
     <>
-      {/* add navbar */}
-      <div className="flex flex-row ">
-        <Navbar />
-        <Outlet />
-      </div>
-
-      {/* add footer */}
+    {
+      location.pathname.startsWith("/dashboard") ? <DashboardLayout /> :
+      <Layout />
+    }
+        
     </>
   )
 }

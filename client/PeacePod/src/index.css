@@ -1,437 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;500;600;700&display=swap');
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
 
-:root {
-  --gradient: linear-gradient(to right bottom, #3bbcec, #575be5);
-  --dark: #082046;
-  --semi-dark: #0f2952;
-  --light: #fff;
-  --link: #1e2ebd;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-  /* font-family: "Enriqueta", serif; */
-  font-family: sans-serif;
-  font-weight: 400;
-  font-size: 12px;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-}
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-.bot-background{
-  background: url("/images/hopebot.jpg") center no-repeat ;
-  position: relative;
-  background-size: cover;
-  height: 100vh;	
-  width: 100%;
-  border: 2px transparent;
-}
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
-.home-background{
-  
-  background: linear-gradient(
-    to right bottom,
-    
-    rgba(47,84,146, 1),
-    rgb(165, 220, 238)
-  );
-  
-  background-size: cover;
-  /* filter: blur(5px);
-  -webkit-filter: blur(5px); */
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
-  /* backdrop-filter: blur(3rem); */
-}
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-/* adding font in whole page */
-/* for regulat text */
-.enriqueta-regular {
-  font-family: "Enriqueta", serif;
-  font-weight: 400;
-  font-style: normal;
-}
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-.enriqueta-medium {
-  font-family: "Enriqueta", serif;
-  font-weight: 500;
-  font-style: normal;
-}
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-.enriqueta-semibold {
-  font-family: "Enriqueta", serif;
-  font-weight: 600;
-  font-style: normal;
-}
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
-.enriqueta-bold {
-  font-family: "Enriqueta", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.roboto{
-  font-family: sans-serif;
-}
-
-.signup-background{
-  background: url("/images/home-bg.jpg") center no-repeat ;
-  position: relative;
-  background-size: cover;
-  height: 100vh;	
-  width: 100%;
-  border: 2px transparent;
-  /* filter: blur(5px);
-  -webkit-filter: blur(5px); */
-}
-
-.music-background{
-  background: url("/images/scene-bg.jpg") center no-repeat ;
-  position: relative;
-  background-size: cover;
-  height: 100vh;	
-  width: 100%;
-  border: 2px transparent;
-  /* filter: blur(5px);
-  -webkit-filter: blur(5px); */
-}
-
-/* .circle{
-  height: 300px;
-  width: 300px;
-  background-image: radial-gradient(circle, #873cd2, #db75d5);
-  border-radius: 300px;
-}
-
-.small-circle{
-  height: 20px;
-  width: 20px;
-  background-color: #3bbcec;
-  border-radius: 20px;
-  transition: ;
-} */
-
-.relaxer-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  height: 300px;
-  width: 300px;
-  position: relative;
-  transform: scale(1);
-}
-
-.gradient-circle {
-  background: conic-gradient(
-    #75b2f0 0%,
-    rgb(52, 120, 221) 40%,
-    rgb(227, 236, 139) 40%,
-    rgb(190, 201, 176) 60%,
-    #a162e0 60%,
-    #e660b9 100%
-  );
-  width: 320px;
-  z-index: -2;
-  border-radius: 50%;
-  position: absolute;
-  top: -10px;
-  left: -10px;
-}
-
-.circle {
-  background: linear-gradient(75deg, #a162e0, rgb(52, 120, 221));
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-.pointer {
-  background-color: #fff;
-  border-radius: 50%;
-  height: 15px;
-  width: 15px;
-  display: block;
-  animation: colorPointer 7.5s linear forwards infinite;
-  animation-play-state: paused;
-}
-.pointer-container {
-  position: absolute;
-  top: -40px;
-  left: 140px;
-  width: 20px;
-  height: 190px;
-  animation: relaxRotate 7.5s linear forwards infinite;
-  animation-play-state: paused;
-  transform-origin: bottom center;
-}
-
-.startBreathe {
-  cursor: pointer;
-  z-index: 500;
-}
-
-@keyframes relaxRotate {
-  0% {
-    transform: rotate(0deg);
+    --radius: 0.5rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes colorPointer {
-  0% {
-    background-color: #fff;
-  }
-  40% {
-    background: rgb(52, 120, 221);
-  }
-  45% {
-    background: rgb(227, 236, 139);
-  }
-  60% {
-    background: #a162e0;
-  }
-  100% {
-    background: #e660b9;
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
-.relaxer-container.grow {
-  animation: grow 3s linear forwards;
-}
-
-@keyframes grow {
-  from {
-    transform: scale(1);
+@layer base {
+  * {
+    @apply border-border;
   }
-  to {
-    transform: scale(1.2);
+  body {
+    @apply bg-background text-foreground;
   }
-}
-
-.relaxer-container.shrink {
-  animation: shrink 3s linear forwards;
-}
-
-@keyframes shrink {
-  from {
-    transform: scale(1.2);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-.relaxer-container {
-  height: 200px;
-  width: 200px;
-}
-.gradient-circle {
-  height: 220px;
-  width: 220px;
-}
-.pointer-container {
-  top: -40px;
-  left: 90px;
-  width: 20px;
-  height: 140px;
-  z-index: -1;
-}
-
-.four-breathing {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 999;
-  background: url(./images/four-seven-eight-bg.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100%;
-}
-.four-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 4.5rem;
-  height: 300px;
-  width: 300px;
-  position: relative;
-  transform: scale(0.9);
-}
-#four-text {
-  font-size: 1rem;
-  z-index: 900;
-  color: #010f1c;
-}
-
-.gradient-circle-four {
-  background: conic-gradient(
-    #6ac9b6 0%,
-    #4ca493 21%,
-    #fff 21%,
-    #fff 58%,
-    #368375 58%,
-    #2a5b52 100%
-  );
-  height: 320px;
-  width: 320px;
-  z-index: -2;
-  border-radius: 50%;
-  position: absolute;
-  top: -10px;
-  left: -10px;
-}
-.circle-four {
-  background-color: #010f1c;
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-.pointer-four {
-  background-color: #fff;
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  display: block;
-}
-.pointer-container-four {
-  position: absolute;
-  top: -40px;
-  left: 140px;
-  width: 20px;
-  height: 190px;
-  animation: rotateFour 19s linear forwards infinite;
-  animation-play-state: paused;
-  transform-origin: bottom center;
-}
-.animate-circle {
-  background-color: white;
-  height: 90%;
-  width: 90%;
-  border-radius: 50%;
-  transform: scale(0.5);
-  position: absolute;
-  z-index: 1;
-}
-.animate-circle.animate-circle-inhale {
-  animation: animate-circle-inhale 4s linear forwards;
-}
-@keyframes animate-circle-inhale {
-  from {
-    transform: scale(0.5);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-.animate-circle.animate-circle-exhale {
-  animation: animate-circle-exhale 8s linear forwards;
-}
-@keyframes animate-circle-exhale {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(0.5);
-  }
-}
-@keyframes rotateFour {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-.four-container.grow {
-  animation: four-grow 4s linear forwards;
-}
-
-@keyframes four-grow {
-  from {
-    transform: scale(0.9);
-  }
-
-  to {
-    transform: scale(1.1);
-  }
-}
-
-.four-container.shrink {
-  animation: four-shrink 8s linear forwards;
-}
-
-@keyframes four-shrink {
-  from {
-    transform: scale(1.1);
-  }
-
-  to {
-    transform: scale(0.9);
-  }
-}
-.start-technique-btn {
-  position: absolute;
-  bottom: 4rem;
-  padding: 0.5rem 5rem;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-family: poppins, sans-serif;
-  letter-spacing: 1px;
-  font-size: 1rem;
-  transition: 0.3s ease;
-}
-.start-technique-btn:hover {
-  background: #368375;
-  color: var(--light);
-}
-/* 4-7-8 breathing */
-.four-seven-eight {
-  background: url(../images/relax-breathe-bg/four-seven-eight.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
-
-.four-container {
-  height: 200px;
-  width: 200px;
-}
-.gradient-circle-four {
-  height: 220px;
-  width: 220px;
-}
-.pointer-container-four {
-  top: -40px;
-  left: 90px;
-  width: 20px;
-  height: 140px;
 }

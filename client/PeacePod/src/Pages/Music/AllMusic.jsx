@@ -9,8 +9,10 @@ const AllMusic = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/category/All") // Replace with your API endpoint
-        const music_data = response.data.allmusic
+        const response = await axios.get("http://127.0.0.1:8000/api/category/All") 
+        // console.log(response.data);// Replace with your API endpoint
+        const music_data = response.data
+
         setAllMusic(music_data)
       } catch (error) {
         console.error("Error fetching music list:", error)
@@ -19,24 +21,29 @@ const AllMusic = () => {
 
     fetchData()
   }, [])
-
   return (
     <>
+    {/* <div className="w-full h-full lg:ml-56"> */}
       <div className="grid xss:grid-cols-2 md:grid-flow-col md:grid-cols-2 md:grid-rows-5 lg:grid-cols-3 gap-4 lg:grid-rows-3 pb-4">
-        {allMusic.slice(0, 8).map((music) => {
+        {allMusic.slice(0, 9).map((music) => {
           if (!music) {
             return null
           }
+          const imagePath = music ? `/images/music-images/${music}` : "./images/music-images/heavenly.jpg";
+          // console.log(imagePath)
           return (
             <div
               key={music}
               className="w-full md:min-w-[300px] transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 relative rounded-md border"
             >
-              <img
-                src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-                alt="Laptop"
+              
+              <img src={imagePath} onError={(e) => { e.target.onerror = null; e.target.src = '/images/music-images/falling snow.jpg' }} alt="Music" />
+              {/* <img
+                // src={`./images/music-images/${music}` ?`./images/music-images/${music}` :"./images/music-images/heavenly.jpg"}
+                src = "/images/music-images/vibe.jpg"
+                alt="music-image"
                 className="h-[200px] w-full rounded-t-md object-cover"
-              />
+              /> */}
 
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white">
                 <h1 className="inline-flex items-center text-lg font-semibold">
@@ -71,6 +78,7 @@ const AllMusic = () => {
           )
         })}
       </div>
+    {/* </div> */}
     </>
   )
 }
