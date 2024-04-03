@@ -8,7 +8,7 @@ from chatbot.nltk_utils import bag_of_words, tokenize
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('chatbot/intents.json', 'r') as json_data:
+with open('chatbot/intents2.json', 'r') as json_data:
     intents = json.load(json_data)
 
 FILE = "chatbot/data.pth"
@@ -43,7 +43,9 @@ def get_response(msg):
     if prob.item() > 0.75:
         for intent in intents['intents']:
             if tag == intent["tag"]:
-                return random.choice(intent['responses'])
+                response = random.choice(intent['responses'])
+                sentiment = intent['sentiment']
+                return {"response": response, "sentiment": sentiment}
     
     return "I do not understand..."
 
