@@ -1,73 +1,33 @@
 import { useForm } from "react-hook-form"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { DevTool } from "@hookform/devtools"
-import { useEffect, useState, useContext } from "react"
-// import AuthContext from "@/context/AuthProvider"
-import { Snackbar } from "@mui/material"
-import IconButton from "@mui/material/IconButton"
-import { X } from "lucide-react"
-import AuthContext from "../../context/AuthContext"
-// import axios from "../../api/axios"
-// const LOGIN_URL = "/auth";
+import { useEffect, useState } from "react"
+import useAuth from "@/hooks/useAuth"
+import { useToast } from "../ui/use-toast"
 
 export const SignIn = () => {
-  const {loginUser} = useContext(AuthContext)
-  const [open, setOpen] = useState(false)
+  const navigate = useNavigate();
+  const { loginUser } = useAuth()
+  const { toast } = useToast()
   const form = useForm({
-    // defaultValues: {
-    //   username: "Jane Doe",
-    //   password: "password",
-    // },
     mode: "onTouched",
   })
   const { register, formState, control, handleSubmit, reset } = form
-  const { errors, isDirty, isSubmitting, isSubmitSuccessful } = formState
-
-  const onSubmit = async (data) => {
-    loginUser
-  }
-
-  useEffect(() => {
-    if (isSubmitting) {
-      ;<h1>Submitting...</h1>
-    }
-  })
+  const { errors, isSubmitSuccessful } = formState
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      setOpen(true)
+      toast({title: "Login Successful"})
+      navigate('/')
       reset()
     }
   }, [isSubmitSuccessful, reset])
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return
-    }
-
-    setOpen(false)
-  }
-
-  const action = (
-    <IconButton
-      size="small"
-      aria-label="close"
-      color="inherit"
-      onClick={handleClose}
-    >
-      <div className="rounded-full text-white px-1 py-1">
-        <X />
-      </div>
-    </IconButton>
-  )
-
   return (
     <>
-      <div className=" w-full min-h-screen overflow-y-scroll signup-background">
-        {/* <div className="s "></div> */}
+      <div className="lg:ml-52 w-full min-h-screen signup-background">
         <div className="flex-flow-col p-10 w-[400px] md:w-[500px] mx-auto">
           <div className="">
-            {/* <h1 className="leading-snug text-3xl shadow-sm text-white enriqueta-bold">Sign Up</h1> */}
             <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl shadow-sm enriqueta-bold">
               Sign In
             </h2>
@@ -83,7 +43,6 @@ export const SignIn = () => {
           </div>
           <div className="min-w-xs">
             <form
-              action=""
               onSubmit={handleSubmit(loginUser)}
               noValidate
               className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -138,27 +97,24 @@ export const SignIn = () => {
 
               <div className="flex items-center justify-between">
                 <button
-                  className="bg-[#2C2E44] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="bg-slate-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
-                  disabled={!isDirty || isSubmitting}
+                  // disabled={isLoading}
                 >
-                  Sign In
+                  <span className="flex items-center justify-center gap-3">
+                  {/* {isLoading && <Loader />} */}
+                  <span>Login</span>
+                </span>
                 </button>
+
+                
               </div>
             </form>
+            
           </div>
         </div>
       </div>
-      {open && (
-        <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          open={open}
-          autoHideDuration={4000}
-          message="Sign Up Sucessful."
-          onClose={handleClose}
-          action={action}
-        />
-      )}
+      
 
       <DevTool control={control} />
     </>

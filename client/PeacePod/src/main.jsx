@@ -3,20 +3,17 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter, Route, createRoutesFromElements } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
+import './App.css'
 import { Home } from './Pages/Home/Home.jsx'
-import { AboutUs } from './Pages/AboutUs/AboutUs.jsx'
 import { Music } from './Pages/Music/Music.jsx'
-import { Scene } from './Pages/Scene/Scene.jsx'
 import { RelaxAndBreathe } from './Pages/RelaxAndBreathe/RelaxAndBreathe.jsx'
 import { TalkToHope } from './Pages/TalkToHope/TalkToHope.jsx'
 import { SignUp } from './components/Forms/SignUp.jsx'
 import { SignIn } from './components/Forms/SignIn.jsx'
-import { UserNavbar } from './components/Navigation/UserNavbar.jsx'
 import { DeepBreathing } from './components/CommonComponents/BreathingComponents/DeepBreathing.jsx'
 import { Four78Technique } from './components/CommonComponents/BreathingComponents/Four78Technique.jsx'
 import AllMusic from './Pages/Music/AllMusic.jsx'
-import PlayMusic from './components/sound/PLayMusic.jsx'
-// import { AuthProvider } from './context/AuthProvider.jsx'
+import PlayMusic from './components/sound/PlayMusic.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import CalmMusic from './Pages/Music/CalmMusic.jsx'
 import HappyMusic from './Pages/Music/HappyMusic.jsx'
@@ -28,6 +25,13 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import PrivateRoute from './utils/PrivateRoute.jsx'
+import { Toaster } from './components/ui/toaster.jsx'
+import AddMusic from './Pages/dashboard/AddMusic.jsx'
+import DashboardLayout from './Pages/dashboard/Dashboard.jsx'
+import ManageMusic from './Pages/dashboard/ManageMusic.jsx'
+import ManageUsers from './Pages/dashboard/ManageUsers.jsx'
+import AboutUs from './Pages/AboutUs/AboutUs.jsx'
+import Recommendation from './Pages/recommendation/Recommendation.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +41,7 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<SignUp />} />
       <Route path='/signin' element={<SignIn/>} />
       {/* navbars */}
-      <Route path='/usernavbar' element={<UserNavbar/>} />
+      {/* <Route path='/usernavbar' element={<UserNavbar/>} /> */}
 
       <Route path='/aboutus' element={<AboutUs />} />
       
@@ -52,12 +56,21 @@ const router = createBrowserRouter(
         <Route path='/music/:id' element={<PlayMusic />} />
       </Route>
 
-      <Route path='/scene' element={<Scene/>} />
+      {/* <Route path='/scene' element={<Scene/>} /> */}
       <Route path='/relaxandbreathe' element={<RelaxAndBreathe/>} />
         <Route path='/relaxandbreathe/deepbreathing' element={<DeepBreathing/>} />
         <Route path='/relaxandbreathe/4-7-8technique' element={<Four78Technique/>} />
       {/* <Route path='/talktohope' element={<TalkToHope/>} /> */}
-      <Route path="talktohope" element={<PrivateRoute Component={TalkToHope} />} />
+      {/* <Route path="talktohope" element={<PrivateRoute Component={TalkToHope} />} /> */}
+      <Route element={<PrivateRoute />}>
+        <Route path='/talktohope' element={<TalkToHope/>} />
+        <Route path=''>
+          <Route path='dashboard/addmusic' element={<AddMusic />}/>
+          <Route path='dashboard/managemusic' element={<ManageMusic />} />
+          <Route path='dashboard/manageusers' element={<ManageUsers />}/>
+          <Route path='recommendedmusic' element={<Recommendation />} />
+        </Route>
+      </Route>
       
     </Route>
     
@@ -73,6 +86,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}/> 
+        <Toaster />
       </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,

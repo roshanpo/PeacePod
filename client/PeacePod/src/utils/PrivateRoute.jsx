@@ -1,14 +1,13 @@
 
-import { Navigate } from "react-router-dom";
-import { useState } from "react";
-import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import { Navigate, Outlet } from "react-router-dom";
+import useAuth from '../hooks/useAuth'
+import { useLocation } from "react-router-dom";
 
-const PrivateRoute = ({ Component }) => {
+const PrivateRoute = () => {
+ const location = useLocation();
+  let {user} = useAuth();
  
-  let {user} = useContext(AuthContext);
- // Your authentication logic goes here...
- 
-  return user ? <Component /> : <Navigate to="/signin" />;
+  return user ? <Outlet /> :
+   <Navigate to="/signin" state={{from: location}} replace />;
 };
 export default PrivateRoute;

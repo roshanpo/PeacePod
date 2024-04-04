@@ -190,5 +190,9 @@ MEDIA_URL = '/media/'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",  # Add your frontend URL
+# ]
+
 
 # AUTH_USER_MODEL = "api.CustomUser" 

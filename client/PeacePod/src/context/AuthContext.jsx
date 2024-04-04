@@ -8,8 +8,6 @@ export default AuthContext;
 
 export const AuthProvider = ({children})=>{
 
-    // const location = useLocation();
-    // const navigate = useNavigate();
     let [authTokens, setAuthTokens] = useState(()=>localStorage.getItem('authTokens')? JSON.parse(localStorage.getItem('authTokens')) : null);
     let [user, setUser] = useState(()=>localStorage.getItem('authTokens')? jwtDecode(localStorage.getItem('authTokens')) : null);
     let [loading, setLoading] = useState(true)
@@ -23,7 +21,6 @@ export const AuthProvider = ({children})=>{
             },
         })
         let data = response.data;
-        
         if(response.status === 200 ){
             localStorage.setItem('authTokens', JSON.stringify(data));
             setAuthTokens(data);

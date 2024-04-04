@@ -23,7 +23,7 @@ const HappyMusic = () => {
   return (
     <>
       <div className="grid xss:grid-cols-2 md:grid-flow-col md:grid-cols-2 md:grid-rows-5 lg:grid-cols-3 gap-4 lg:grid-rows-3 pb-4">
-        {allMusic.slice(0, 8).map((music) => {
+        {allMusic?.slice(0, 8).map((music) => {
           if (!music) {
             return null
           }
@@ -33,7 +33,7 @@ const HappyMusic = () => {
               className="w-full md:min-w-[300px] transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 relative rounded-md border"
             >
               <img
-                src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+                src="/images/music-images/Arcadia.jpg"
                 alt="Laptop"
                 className="h-[200px] w-full rounded-t-md object-cover"
               />

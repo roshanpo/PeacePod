@@ -5,12 +5,18 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+    // "@": path.resolve(__dirname, "./src/"),
+
+    // routes: `${path.resolve(__dirname, "./src/routes/")}`,
+
+    // services: `${path.resolve(__dirname, "./src/services/")}`,
+
   resolve: {
     alias: {
-      src: "/src",
-      components: "/src/components",
-      assets: "/src/assets",
-      lib: "/src/lib",
+      "@": path.resolve(__dirname, "./src/"),
+      components:`${path.resolve(__dirname, "./src/components/")}`, 
+      assets: `${path.resolve(__dirname, "./src/assets/")}`,
+      lib: `${path.resolve(__dirname, "./src/lib/")}`,
     },
   },
 })

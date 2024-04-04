@@ -23,7 +23,7 @@ const NatureMusic = () => {
   return (
     <>
       <div className="grid xss:grid-cols-2 md:grid-flow-col md:grid-cols-2 md:grid-rows-5 lg:grid-cols-3 gap-4 lg:grid-rows-3 pb-4">
-        {allMusic.slice(0, 8).map((music) => {
+        {allMusic?.slice(0, 8).map((music) => {
           if (!music) {
             return null
           }

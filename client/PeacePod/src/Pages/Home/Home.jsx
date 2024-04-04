@@ -4,11 +4,13 @@ import { Button } from "../../components/CommonComponents/Button"
 import { ArrowRight } from "lucide-react"
 import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
+import useAuth from '../../hooks/useAuth'
+
 export const Home = () => {
-  const {user, logoutUser} = useContext(AuthContext); 
+  const {user, logoutUser} = useAuth();
   return (
     <>
-    <div>
+    {/* <div>
       {
         user? (
           <button className='bg-pink h-4 w-4' onClick={logoutUser}>logout</button>
@@ -17,12 +19,14 @@ export const Home = () => {
       }
     </div>
     <br /><br />
-    {user && <h1 className='mt-6'>Welcome {user.name}</h1>}
-      <div className="home-background h-screen w-full">
-        <div className="flex flex-flow-col gap-8 h-full">
+    {user && <h1 className='mt-6'>Welcome {user.name}</h1>} */}
+      <div className="home-background min-h-screen w-full lg:ml-52">
+        <div className="flex flex-flow-col gap-8 h-full px-6">
           <div className="mx-auto w-full md:w-[60%] pt-14 pl-4 md:left-72">
             <div className="leading-snug enriqueta-bold text-6xl shadow-sm text-white">
-              
+              {
+                user && <h3 className='text-4xl capitalize'>{user.name},</h3>
+              }
               <h1>Welcome To</h1>
               <h1 className="tracking-[6px]">PEACEPOD</h1>
               
@@ -66,11 +70,11 @@ export const Home = () => {
             <div className="hidden lg:flex lg:flex-col gap-4 pr-4 pt-4 max-h-screen justify-end sm:-mt-44 lg:mt-0 lg:pl-0 lg:pr-7">
 
               <div className="relative  w-auto">
-                <img
+                {/* <img
                   src="/images/image1.jpg"
                   alt="meditationimg1"
                   className="aspect-[2/3] rounded-xl bg-gray-900/5 object-cover shadow-lg"
-                />
+                /> */}
                 <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
             </div>
