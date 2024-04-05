@@ -7,9 +7,11 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Video, Music
+from django.contrib.auth.models import User
 from .serializers import VideoSerializer, MusicSerializer, UserSerializer
 from chatbot.chat import get_response
 from Music_recommender import recommendation
+from django.http import JsonResponse
 import logging
 import os
 
@@ -42,6 +44,14 @@ def create_user(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['DELETE'])
+def delete_user(request, user_id):
+        user = User.objects.get(id=user_id)
+        # music_file_path = music.music_file.path
+        user.delete()
+        return Response("User Deleted")
+
 @api_view(['GET'])
 def get_video(request, video_name):
     video = get_object_or_404(Video, title=video_name)
@@ -73,6 +83,27 @@ def category(request, category):
     # music_folder_path = os.path.join(os.path.dirname(__file__), '..','media/music/%s'%(categories))  # Path to your music folder
     # music_files = [file for file in os.listdir(music_folder_path) if file.endswith('.mp3')]  # Filter only .mp3 files
     # return Response({'category': music_files})
+
+@api_view(['GET'])
+def allmusic(request):      #this is only for admin API
+    music = Music.objects.all()
+
+    # Construct a list of dictionaries, each containing the id and title of a music record
+    music_data = [{'id': item.id, 'title': item.title} for item in music]
+
+    # Return the list as a JsonResponse
+    return Response(music_data)
+
+
+@api_view(['GET'])
+def allusers(request):      #this is only for admin API
+    music = User.objects.all()
+
+    # Construct a list of dictionaries, each containing the id and title of a music record
+    user_data = [{'id': item.id, 'username': item.username, 'email':item.email} for item in music]
+
+    # Return the list as a JsonResponse
+    return Response(user_data)
 
 @api_view(['GET'])
 def all_categories(request):
