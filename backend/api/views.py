@@ -35,9 +35,26 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
+# @api_view(['POST'])
+# def create_user(request):
+#     if request.method == 'POST':
+#         serializer = UserSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['POST'])
 def create_user(request):
     if request.method == 'POST':
+        # Check if the username already exists
+        if User.objects.filter(username=request.data.get('username')).exists():
+            return Response({'message': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Check if the email already exists
+        if User.objects.filter(email=request.data.get('email')).exists():
+            return Response({'message': 'Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+        
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
