@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form"
 import { NavLink } from "react-router-dom"
-import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
 import { registerUser } from "@/api/login"
@@ -17,19 +16,20 @@ export const SignUp = () => {
 
   const mutation = useMutation({
     mutationFn: async(data)=> registerUser(data),
-    onSuccess: () => {
-      navigate('/')
+    onSuccess: async(data) => {
+      if(data.status===201){
+        navigate('/signin')
+        console.log(data)
+        toast({title: "Register Successful"})
+        reset()
+      }
     },
-  })
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      navigate('/')
-      toast({title: "Register Successful"})
-      reset()
+    onError: (data) =>{
+      toast({title: data.response.data.message})
+      console.log(data.response.data.message)
+      setMessage(data.response.data.message)
     }
-  }, [isSubmitSuccessful, reset])
-
+  })
 
   const onSubmit = (data) => {
     const newData = {
@@ -176,6 +176,7 @@ export const SignUp = () => {
                   </button>
                 </div>
               </form>
+              
           </div>
         </div>
       </div>
