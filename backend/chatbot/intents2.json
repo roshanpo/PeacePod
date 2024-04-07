@@ -90,7 +90,7 @@
         ,"sentiment":"Nature"
     },
     {"tag": "happy",
-        "patterns": ["I feel great today.", "I am happy.", "I feel happy.", "I'm good.", "cheerful", "I'm fine", "I feel ok"],
+        "patterns": ["I feel great today.","happy", "I am happy.", "I feel happy.", "I'm good.", "cheerful", "I'm fine", "I feel ok"],
         "responses": ["That's geat to hear. I'm glad you're feeling this way.", "Oh i see. That's great.", "Did something happen which made you feel this way?"]
         ,"sentiment":"Happy"
     },

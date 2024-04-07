@@ -4,8 +4,10 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
 import { registerUser } from "@/api/login"
+import { useToast } from "../ui/use-toast"
 
 export const SignUp = () => {
+  const {toast} = useToast();
   const navigate = useNavigate();
   const form = useForm({
     mode: "onTouched",
@@ -22,6 +24,7 @@ export const SignUp = () => {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
+      navigate('/')
       toast({title: "Register Successful"})
       reset()
     }
