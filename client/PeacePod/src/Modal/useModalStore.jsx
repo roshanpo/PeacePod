@@ -15,6 +15,10 @@ export const useModalStates = create(
           },
         })),
     },
-    
+
+    sentiment: 'calm',
+    addSentiment: (newSentiment) => {
+      set({ sentiment: newSentiment });
+    }
   }))
 )

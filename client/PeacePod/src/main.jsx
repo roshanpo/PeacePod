@@ -32,6 +32,7 @@ import ManageMusic from './Pages/dashboard/ManageMusic.jsx'
 import ManageUsers from './Pages/dashboard/ManageUsers.jsx'
 import AboutUs from './Pages/AboutUs/AboutUs.jsx'
 import Recommendation from './Pages/recommendation/Recommendation.jsx'
+import InstrumentalMusic from './Pages/Music/InstrumentalMusic.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,6 +54,7 @@ const router = createBrowserRouter(
         <Route path='/music/naturemusic' element={<NatureMusic />} />
         <Route path='/music/sadmusic' element={<SadMusic />} />
         <Route path='/music/spiritualmusic' element={<SpiritualMusic />} />
+        <Route path='/music/instrumentalmusic' element={<InstrumentalMusic />} />
         <Route path='/music/:id' element={<PlayMusic />} />
       </Route>
 
