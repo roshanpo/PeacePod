@@ -17,6 +17,8 @@ import os
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.exceptions import AuthenticationFailed
+from django.contrib.auth import authenticate
 
 logger = logging.getLogger(__name__)
 
@@ -25,11 +27,30 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
 
-        # Add custom claims
+
         token['name'] = user.username
         # ...
 
         return token
+    def validate(self, attrs):
+        credentials = {
+            'username': attrs.get('username'),
+            'password': attrs.get('password')
+        }
+
+        if not self.user_exists(credentials['username']):
+            raise AuthenticationFailed('Username does not exist')
+
+        user = authenticate(**credentials)
+        if user:
+            return super().validate(attrs)
+        else:
+            raise AuthenticationFailed('Incorrect Password')
+
+    def user_exists(self, username):
+        if User.objects.filter(username=username).exists():
+            return True
+        return False
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
