@@ -22,7 +22,6 @@ export const TalkToHope = () => {
   // const incremnet = useModalStates((state) => state.increment);
   const addSentiment = useModalStates((state) => state.addSentiment);
   const sentiment = useModalStates((state) => state.sentiment);
-  console.log(sentiment)
 
   useEffect(() => {
     // Load conversation history from localStorage when component mounts

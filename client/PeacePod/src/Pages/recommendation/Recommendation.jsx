@@ -7,9 +7,26 @@ import React from 'react'
 function Recommendation() {
   
   const sentiment = useModalStates((state)=>state.sentiment);
+  // console.log(sentiment)
+
   const {data:recommended} = useQuery({
-    queryKey: ["recommendedmusic"],
-    queryFn: () => getCategoryMusic(sentiment)
+    queryKey: ["recommendedmusica",sentiment],
+    queryFn: async ( sentiment) => {
+      let sentiment1 = 'Calm'
+      if (sentiment === 'positive'){
+        console.log("positive")
+        sentiment1 = 'Happy'
+
+      }else if(sentiment === 'negative'){
+        console.log("negative")
+        sentiment1 = 'Nature'
+      }
+    else{
+      console.log("neutral")
+      sentiment1 = 'Instrumental'
+    }
+    return getCategoryMusic(sentiment1)
+  }
   })
 
   return (
