@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
+import { useToast } from "@/components/ui/use-toast"
 const AddMusic = () => {
+  const { toast } = useToast()
   const [image, setImage] = useState("")
   const [title, setTitle] = useState("")
   const [category, setCategory] = useState("")
@@ -26,7 +28,14 @@ const AddMusic = () => {
     axios
       .post("http://127.0.0.1:8000/api/upload-music/", formData)
       .then((res) => {
-        console.log(res)
+        if (res.status === 201) {
+          toast({ title: "Music added successfully." })
+          setImage("")
+          setTitle("")
+          setCategory("")
+          // console.log('first')
+          // alert('added')
+        }
       })
   }
   return (

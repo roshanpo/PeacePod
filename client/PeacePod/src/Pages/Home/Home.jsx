@@ -56,6 +56,7 @@ export const Home = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </button>
                   </NavLink>
+
                 </div>
               </div>
             </div>
