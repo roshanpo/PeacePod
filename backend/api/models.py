@@ -17,6 +17,7 @@ class Music(models.Model):
     title = models.CharField(max_length=300)
     category = models.CharField(max_length=100)
     music_file = models.FileField(upload_to='music/All')
+    keywords = models.CharField(max_length=500, null=False)
 
 # class CustomUserManager(BaseUserManager):
 #     def create_user(self, email, username, password=None):
