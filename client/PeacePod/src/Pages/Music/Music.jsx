@@ -34,7 +34,8 @@ export const Music = () => {
                   onClick={toggleDropdown}
                   className="relative text-left z-10 block rounded-md w-52  bg-slate-600 text-gray-200 px-6 text-lg py-2 overflow-hidden "
                 >
-                  {selectedGenre}
+                  {selectedGenre.charAt(0).toUpperCase() + selectedGenre.slice(1)}
+                  
                   {/* <svg
                     class="h-5 w-5 text-gray-800"
                     xmlns="http://www.w3.org/2000/svg"
