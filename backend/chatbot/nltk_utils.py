@@ -1,8 +1,10 @@
 import numpy as np
 import nltk
 # nltk.download('punkt')
-from nltk.stem.porter import PorterStemmer
-stemmer = PorterStemmer()
+# from nltk.stem.porter import PorterStemmer
+from nltk.stem.lancaster import LancasterStemmer
+# stemmer = PorterStemmer()
+stemmer = LancasterStemmer()
 
 
 def tokenize(sentence):

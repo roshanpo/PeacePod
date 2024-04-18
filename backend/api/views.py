@@ -6,9 +6,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Video, Music
+from .models import Music
 from django.contrib.auth.models import User
-from .serializers import VideoSerializer, MusicSerializer, UserSerializer
+from .serializers import MusicSerializer, UserSerializer
 from chatbot.chat import get_response
 from Music_recommender import recommendation
 from django.http import JsonResponse
@@ -90,11 +90,11 @@ def delete_user(request, user_id):
         user.delete()
         return Response("User Deleted")
 
-@api_view(['GET'])
-def get_video(request, video_name):
-    video = get_object_or_404(Video, title=video_name)
-    video_path = video.video_file.path
-    return FileResponse(open(video_path, 'rb'), content_type='video/mp4')
+# @api_view(['GET'])
+# def get_video(request, video_name):
+#     video = get_object_or_404(Video, title=video_name)
+#     video_path = video.video_file.path
+#     return FileResponse(open(video_path, 'rb'), content_type='video/mp4')
 
 
 @api_view(['GET'])

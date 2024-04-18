@@ -1,10 +1,15 @@
 import random
 import json
-
 import torch
 
 from chatbot.model import NeuralNet
 from chatbot.nltk_utils import bag_of_words, tokenize
+
+import os
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+django.setup()
+from api.models import Query
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -46,9 +51,11 @@ def get_response(msg):
                 response = random.choice(intent['responses'])
                 sentiment = intent['sentiment']
                 return {"response": response, "sentiment": sentiment}
-    
-    return "I do not understand..."
-
+    if not Query.objects.filter(text=msg).exists():
+        # Save the query to the database
+        query = Query(text=msg)
+        query.save()
+    return {"response": "I was not trained for this specific query. However I will save your query so that I can get trained.", "sentiment": "neutral"}
 
 if __name__ == "__main__":
     print("Let's chat! (type 'quit' to exit)")
