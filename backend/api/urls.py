@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_video, get_music,chat,musicRecommend,category,all_categories,upload_music, update_music, delete_music,create_user,delete_user,allmusic,allusers, MyTokenObtainPairView
+from .views import get_music,chat,musicRecommend,category,all_categories,upload_music, update_music, delete_music,create_user,delete_user,allmusic,allusers, MyTokenObtainPairView
 
 
 from rest_framework_simplejwt.views import (
@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
-    path('videos/<str:video_name>/', get_video, name='get_video'),
+    # path('videos/<str:video_name>/', get_video, name='get_video'),
     path('music/<str:music_name>/', get_music, name='get_music'),
     path('allmusic/', allmusic, name='allmusic'),  #only for Admin
     path('allusers/', allusers, name='allusers'),

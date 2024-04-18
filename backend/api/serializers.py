@@ -1,13 +1,13 @@
 from rest_framework import serializers
-from .models import Video
+# from .models import Video
 from .models import Music
 # from .models import CustomUser
 from django.contrib.auth.models import User
 
-class VideoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Video
-        fields = '__all__'
+# class VideoSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Video
+#         fields = '__all__'
 
 class MusicSerializer(serializers.ModelSerializer):
     class Meta:
