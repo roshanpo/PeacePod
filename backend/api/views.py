@@ -193,7 +193,7 @@ def upload_music(request):
 
 
 @api_view(['DELETE'])
-def delete_music(request):
+def delete_music(request, music_id):
     try:
         music = Music.objects.get(id=music_id)
         music_file_path = music.music_file.path

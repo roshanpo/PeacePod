@@ -1,43 +1,39 @@
+import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+django.setup()
+from django_pandas.io import read_frame
+from api.models import Music  # Replace 'myapp' with the name of your Django app
 import pandas as pd
-import string
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.sparse import csr_matrix
-import numpy as np
+import string
 
-df = pd.read_csv("music_data.csv")
-df.head(5)
-df.shape
-df.isnull().sum()
-df['tags'][0]
-df.shape
-df['tags'] = df['tags'].str.lower().replace(r'^\w\s', ' ').replace(r'\n', ' ', regex = True)
+# Fetching data from the database
+qs = Music.objects.all()
+df = read_frame(qs, fieldnames=['title', 'keywords'])
 
+# Data preprocessing
+df['keywords'] = df['keywords'].str.lower().replace('[{}]'.format(string.punctuation), ' ', regex=True)
 
-
+# Tokenize could be adjusted if additional processing is needed
 def tokenize(doc):
-    # Remove punctuation from the document and split into tokens
-    translator = str.maketrans('', '', string.punctuation)
-    doc = doc.translate(translator)
-    tokens = doc.split()
-    print(tokens)
-    return tokens
+    return doc.split()
 
-
+# Calculate TF-IDF
 def calculate_tfidf(docs):
-    # Initialize TfidfVectorizer
-    tfidf_vectorizer = TfidfVectorizer(analyzer='word')
-    
-    # Fit and transform the documents
+    tfidf_vectorizer = TfidfVectorizer(analyzer='word', tokenizer=tokenize)
     tfidf_matrix = tfidf_vectorizer.fit_transform(docs)
-    
-    # print(tfidf_matrix)
     return tfidf_matrix
 
-
+# Calculate Cosine Similarity
 def cosine_similarity(matrix):
     if not isinstance(matrix, csr_matrix):
         matrix = csr_matrix(matrix)
-    
+    # print(matrix * matrix.T)
+    # return matrix * matrix.T
     num_docs = matrix.shape[0]
     similarity = np.zeros((num_docs, num_docs))
     for i in range(num_docs):
@@ -46,25 +42,24 @@ def cosine_similarity(matrix):
             norm_i = np.linalg.norm(matrix[i].toarray())
             norm_j = np.linalg.norm(matrix[j].toarray())
             similarity[i, j] = dot_product / (norm_i * norm_j)
+            print(similarity)
     return similarity
 
-# # Example usage:
-docs = df['tags']  
+# Generate Recommendations
+def recommendation(title):
+    idx = df[df['title'] == title].index[0]
+    distances = list(enumerate(similarity_matrix[idx]))
+    distances = sorted(distances, key=lambda x: x[1], reverse=True)
+    
+    recommended_titles = []
+    for i, score in distances[1:6]:  # Assuming the first is the query itself
+        recommended_titles.append(df.iloc[i]['title'])
+    return recommended_titles
+
+# Example Usage
+docs = df['keywords']
 tfidf_matrix = calculate_tfidf(docs)
 similarity_matrix = cosine_similarity(tfidf_matrix)
-
-
-
-def recommendation(song_df):
-    idx = df[df['title'] == song_df].index[0]
-    distances = sorted(list(enumerate(similarity_matrix[idx])),reverse=True,key=lambda x:x[1])
-    
-    songs = []
-    for m_id in distances[1:6]:
-        songs.append(df.iloc[m_id[0]].title)
-        
-    return songs
-
 # def calculate_tfidf(docs):
 #     # Step 1: Tokenize documents
 #     tokenized_docs = [tokenize(doc) for doc in docs]
@@ -144,4 +139,4 @@ def recommendation(song_df):
 #         songs.append(df.iloc[m_id[0]].title)
         
 #     return songs
-print(recommendation('Departure'))
+print(recommendation('Breakfast in Paris'))

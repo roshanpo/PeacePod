@@ -2,31 +2,31 @@ import { useModalStates } from '@/Modal/useModalStore';
 import { getCategoryMusic } from '@/api/music';
 import RecommendedCard from '@/components/RecommendedCard';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Recommendation() {
   
   const sentiment = useModalStates((state)=>state.sentiment);
-  // console.log(sentiment)
+  const [recommendType, setRecommendType] = useState();
+  console.log(sentiment);
+
+  useEffect(() => {
+    if(sentiment === 'positive'){
+        setRecommendType('Happy')
+    }
+    else if(sentiment === 'negative'){
+      setRecommendType('Calm')
+    }
+    else{
+      setRecommendType('Instrumental')
+    }
+  }, [sentiment])
+  
 
   const {data:recommended} = useQuery({
     queryKey: ["recommendedmusica",sentiment],
-    queryFn: async ( sentiment) => {
-      let sentiment1 = 'Calm'
-      if (sentiment === 'positive'){
-        console.log("positive")
-        sentiment1 = 'Happy'
-
-      }else if(sentiment === 'negative'){
-        console.log("negative")
-        sentiment1 = 'Nature'
-      }
-    else{
-      console.log("neutral")
-      sentiment1 = 'Instrumental'
-    }
-    return getCategoryMusic(sentiment1)
-  }
+    queryFn: async()=>getCategoryMusic(recommendType)
+  
   })
 
   return (
