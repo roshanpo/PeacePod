@@ -4,10 +4,12 @@ import { DevTool } from "@hookform/devtools"
 import { useEffect, useState } from "react"
 import useAuth from "@/hooks/useAuth"
 import { useToast } from "../ui/use-toast"
+import { useModalStates } from "@/Modal/useModalStore"
 
 export const SignIn = () => {
   const navigate = useNavigate();
   const { loginUser } = useAuth()
+  const signinMessage = useModalStates((state) => state.signinMessage);
   const { toast } = useToast()
   const form = useForm({
     mode: "onTouched",
@@ -17,7 +19,7 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      toast({title: "Login Successful"})
+      toast({title: signinMessage})
       navigate('/')
       reset()
     }

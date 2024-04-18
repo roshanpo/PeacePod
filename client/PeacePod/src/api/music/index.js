@@ -34,7 +34,9 @@ export async function deleteMusic(music_id){
 export async function getCategoryMusic(music_category){
     try{
         let category = music_category.charAt(0).toUpperCase() + music_category.slice(1);
+        // console.log(category)
         const response = await axios.get(`http://localhost:8000/api/category/${category}/`);
+    //    console.log(response.data)
         return response.data;
     }catch (error) {
         console.error("error found")

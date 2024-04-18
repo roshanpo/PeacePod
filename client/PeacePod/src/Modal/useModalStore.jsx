@@ -16,9 +16,14 @@ export const useModalStates = create(
         })),
     },
 
-    sentiment: 'calm',
+    sentiment: 'neutral',
     addSentiment: (newSentiment) => {
       set({ sentiment: newSentiment });
+    },
+
+    signinMessage: "",
+    setSignInMessage : (newmessage) =>{
+      set({signinMessage: newmessage})
     }
   }))
 )
