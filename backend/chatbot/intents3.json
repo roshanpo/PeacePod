@@ -48,18 +48,7 @@
     "patterns": ["I am so stressed out", "I am stressed", "I feel stuck", "I still feel stressed", "I am so burned out","I'm feeling low","stressful"],
     "responses": ["What do you think is causing stress?", "Take a deep breath and gather your thoughts. Go take a walk if possible. Stay hydrated. It helps to elivate stress", "Give yourself a break. Go easy on yourself.It is normal to feel stressed sometimes", "I am sorry to hear that. What is the reason behind this stress?"],
     "sentiment":"negative"
-},
-    {"tag": "exam",
-        "patterns": ["I have exam","exam","I am stressed about exams"],
-        "responses": ["Oh don't stress about it too much. You will do great in your exams"],
-        "sentiment":"negative"
-},
-{
-    "tag": "exam-failed",
-        "patterns": ["I failed in exam","I got low marks","I am failing in exams"],
-        "responses": ["Oh.I'm so sorry to hear that. I am sure you will do great in next exam!","Don't take a toll on yourself. It will get better and you will do great in exams next time"],
-        "sentiment":"negative"
-},
+    },
     {"tag": "about",
      "patterns": ["Who are you?", "What are you?", "Who you are?", "Tell me more about yourself.", "What is your name?", "What should I call you?", "What's your name?", "Tell me about yourself" ],
      "responses": ["I'm Hope, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Hope, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Hope. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Hope.", "I'm Hope!", "Call me Hope"],
@@ -394,7 +383,7 @@
     },
       {
         "tag": "meditation-problem",
-        "patterns": ["I'm having trouble meditating. Any tips?", "Meditation is hard for me."],
+        "patterns": ["I am having trouble meditating", "Meditation is hard for me."],
         "responses": ["It's normal to find meditation challenging at first. Start with shorter sessions and gradually increase the duration. Focus on your breath or use guided meditation apps. If your mind wanders, gently bring it back to your point of focus. Don't judge yourself; meditation is a skill that improves with practice. Consistency is key. Experiment with different techniques until you find what works best for you."]
         ,"sentiment":"negative"
     },
@@ -451,7 +440,18 @@
         "patterns": ["How long should a meditation session be?", "What is the ideal duration for meditation?","How long should I meditate?"],
         "responses": ["The ideal duration varies, and it's more important to establish consistency. Beginners may start with 5-10 minutes and gradually increase. Many find 15-30 minutes beneficial for deeper practice."]
         ,"sentiment":"neutral"
-    }
+    },
+    {"tag": "exam",
+    "patterns": ["I have exam","exam","I am stressed about exams"],
+    "responses": ["Oh don't stress about it too much. You will do great in your exams"],
+    "sentiment":"negative"
+    },
+    {
+    "tag": "exam-failed",
+    "patterns": ["I failed in exam","I got low marks","I am failing in exams"],
+    "responses": ["Oh.I'm so sorry to hear that. I am sure you will do great in next exam!","Don't take a toll on yourself. It will get better and you will do great in exams next time"],
+    "sentiment":"negative"
+}
 
     ]
 }
