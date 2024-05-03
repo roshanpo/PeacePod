@@ -7,7 +7,7 @@ export async function addMusic (formData) {
         console.log(response)
     }catch (error) {
         console.error("error found")
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        console.error(error.response.data);      
     }
 }
    
@@ -17,7 +17,7 @@ export async function getAllMusic () {
         return response.data;
     }catch (error) {
         console.error("error found")
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        console.error(error.response.data);      
     }
 }
 
@@ -26,7 +26,7 @@ export async function deleteMusic(music_id){
         const response = await axios.delete(`http://localhost:8000/api/delete-music/${music_id}/`);
     }catch (error) {
         console.error("error found")
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        console.error(error.response.data);      
     }
 }
 
@@ -40,6 +40,6 @@ export async function getCategoryMusic(music_category){
         return response.data;
     }catch (error) {
         console.error("error found")
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        console.error(error.response.data);      
     }
 }

@@ -2,13 +2,8 @@ import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  Building,
   ChevronRightIcon,
-  LayoutPanelLeft,
-  LayoutTemplate,
   Music,
-  NewspaperIcon,
-  Radio,
   User,
   UsersRound,
 } from "lucide-react";
@@ -46,60 +41,6 @@ const navigation = [
       },
     ],
   },
-  // {
-  //   name: "Templates",
-  //   href: "templates",
-  //   icon: LayoutTemplate,
-  //   superAdminAccess: true,
-  // },
-  // {
-  //   name: "Regions",
-  //   href: "",
-  //   icon: Building,
-  //   superAdminAccess: true,
-  //   children: [
-  //     {
-  //       name: "Add Regions",
-  //       href: "addregion",
-  //     },
-  //     {
-  //       name: "Region Type",
-  //       href: "regiontype",
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: "Categories",
-  //   href: "addcategories",
-  //   icon: LayoutPanelLeft,
-  //   superAdminAccess: true,
-  //   children:[
-  //     {
-  //       name: "Add Categories",
-  //       href: "addcategories"
-  //     },
-  //     { 
-  //       name: "Region Category",
-  //       href: "regioncategory"
-  //     }
-  //   ]
-  // },
-  // {
-  //   name: "User Management",
-  //   href: "",
-  //   icon: User,
-  //   superAdminAccess: true,
-  //   children: [
-  //     {
-  //       name: "Users",
-  //       href: "manageusers",
-  //     },
-  //     {
-  //       name: "Roles",
-  //       href: "manageroles",
-  //     },
-  //   ],
-  // },
 ];
 
 function classNames(...classes) {

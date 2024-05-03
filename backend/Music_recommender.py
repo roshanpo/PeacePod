@@ -42,7 +42,7 @@ def cosine_similarity(matrix):
             norm_i = np.linalg.norm(matrix[i].toarray())
             norm_j = np.linalg.norm(matrix[j].toarray())
             similarity[i, j] = dot_product / (norm_i * norm_j)
-            print(similarity)
+            # print(similarity)
     return similarity
 
 # Generate Recommendations
@@ -139,4 +139,4 @@ similarity_matrix = cosine_similarity(tfidf_matrix)
 #         songs.append(df.iloc[m_id[0]].title)
         
 #     return songs
-print(recommendation('Breakfast in Paris'))
+# print(recommendation('Breakfast in Paris'))

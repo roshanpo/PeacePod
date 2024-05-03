@@ -10,7 +10,7 @@ export async function getallUsers (){
         return response.data;
     }catch (error) {
         console.error("error found")
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        console.error(error.response.data);     
     }
 }
 
@@ -19,6 +19,6 @@ export async function deleteUser(user_id){
         const response = await axios.delete(`http://localhost:8000/api/delete-user/${user_id}/`);
     }catch (error) {
         console.error("error found")
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        console.error(error.response.data); 
     }
 }

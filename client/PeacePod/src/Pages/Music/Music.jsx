@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Outlet } from "react-router-dom"
 import axios from "axios"
+import AllMusic from "./AllMusic"
 
 export const Music = () => {
   const [category, setCategory] = useState()
@@ -73,14 +74,15 @@ export const Music = () => {
                     )
                   })}
                 </div>
-              )}
+              )
+            }
             </div>
           </div>
         </div>
 
         <div className=" z-10 relative w-full mt-6">
           <div className="pl-4 grid grid-flow-col pr-4">
-            <Outlet />
+             <Outlet />
           </div>
         </div>
       </div>

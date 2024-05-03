@@ -16,7 +16,7 @@ const navigation = [
   },
   {
     name: "Music",
-    href: "/music",
+    href: "/music/allmusic",
     icon: Music,
     current: false,
   },

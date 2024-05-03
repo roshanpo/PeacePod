@@ -31,8 +31,8 @@ function Recommendation() {
 
   return (
     <>
-    <div className='lg:ml-56 text-center'>
-      <h1 className='text-[20px] font-bold text-center my-4'>Recommended For you</h1>
+    <div className='lg:ml-56 text-center w-full h-screen'>
+      <h1 className='text-[20px] font-bold text-center my-4'>Recommendation Based on chatbot</h1>
       {/* <h2>{sentiment}</h2> */}
       <div className='grid grid-cols-4 gap-4 space-x-4 pace-y-4 mb-8'>
       {

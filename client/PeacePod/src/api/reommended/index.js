@@ -6,6 +6,6 @@ export const recommendMusic = async(data)=>{
         return response.data.result;
     }catch (error) {
         console.error("error found")
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        console.error(error.response.data);      
     }
 }

@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react"
 import axios from "axios"
 import { jwtDecode } from "jwt-decode"
 import { useModalStates } from "@/Modal/useModalStore"
-// import {  useNavigate } from "react-router-dom";
 
 const AuthContext = createContext()
 export default AuthContext
@@ -50,7 +49,6 @@ export const AuthProvider = ({ children }) => {
       console.error("Error occurred while logging in:", error)
       if (error.response) {
         setSignInMessage(error.response.data.detail)
-        // alert(error.response.data.message);
       }
     }
   }
