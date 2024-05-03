@@ -1,31 +1,25 @@
+import { getAllMusic } from "@/api/music"
+import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import React, { useState } from "react"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const AllMusic = () => {
-  const [allMusic, setAllMusic] = useState([])
+  // const [allMusic, setAllMusic] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/category/All") 
-        // console.log(response.data);// Replace with your API endpoint
-        const music_data = response.data
+    const { data: allMusic, refetch } = useQuery({
+      queryKey: ["allmusic"],
+      queryFn: async () => getAllMusic(),
+    })
 
-        setAllMusic(music_data)
-      } catch (error) {
-        console.error("Error fetching music list:", error)
-      }
-    }
+    console.log(allMusic)
 
-    fetchData()
-  }, [])
   return (
     <>
     {/* <div className="w-full h-full lg:ml-56"> */}
       <div className="grid xss:grid-cols-2 md:grid-flow-col md:grid-cols-2 md:grid-rows-5 lg:grid-cols-3 gap-4 lg:grid-rows-3 pb-4">
-        {allMusic.slice(0, 9).map((music) => {
+        {allMusic?.slice(0,9).map((music,index) => {
           if (!music) {
             return null
           }
@@ -33,7 +27,7 @@ const AllMusic = () => {
           // console.log(imagePath)
           return (
             <div
-              key={music}
+              key={index}
               className="w-full md:min-w-[300px] transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 relative rounded-md border"
             >
               
@@ -47,7 +41,7 @@ const AllMusic = () => {
 
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white">
                 <h1 className="inline-flex items-center text-lg font-semibold">
-                  {music} &nbsp;
+                  {music.title} &nbsp;
                 </h1>
 
                 {/* we can write genre of the music in the below div */}
@@ -63,7 +57,7 @@ const AllMusic = () => {
                     </span>
                   </div> */}
                 <Link
-                  to={`/music/${music}`}
+                  to={`/music/${music.title}`}
                   // to={{ pathname: '/music/playmusic', state: { name: {music} } }}
                 >
                   <button

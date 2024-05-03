@@ -28,7 +28,7 @@ export default function RecommendedMusic({ music }) {
       
       <div className="gap-4 overflow-hidden mt-8 mb-8 w-full grid lg:grid-cols-4 grid-cols-3">
         {recommendedMusic &&
-          recommendedMusic?.map((music, index) => {
+          recommendedMusic?.slice(0,4).map((music, index) => {
             if (!music) {
               return null
             }

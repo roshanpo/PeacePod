@@ -3,6 +3,7 @@ import TopNavbar from './components/Navigation/TopNavBar'
 import { Navbar } from './components/Navigation/Navbar'
 import { Outlet } from 'react-router-dom'
 import { FullPageLoader } from './components/ui/Loader'
+import Footer from './components/Footer'
 
 function Layout() {
   return (
@@ -13,7 +14,9 @@ function Layout() {
       <Suspense fallback={<FullPageLoader />}>
         <Outlet />
       </Suspense>
+      
     </div>
+    <Footer />
   </>
   )
 }
